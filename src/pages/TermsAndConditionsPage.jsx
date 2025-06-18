@@ -1,6 +1,7 @@
 import React from 'react';
 import { Shield, Users, FileText, AlertTriangle } from 'lucide-react';
 import Footer from '../components/Footer';
+import Navbar from '../components/NavBar';
 
 export default function TermsAndConditionsPage ()  {
   const sections = [
@@ -48,6 +49,7 @@ export default function TermsAndConditionsPage ()  {
 
   return (
      <section>
+      <Navbar />
     <div className="min-h-screen py-12">
       <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
         {/* Header */}
