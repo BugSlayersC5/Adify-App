@@ -9,25 +9,25 @@ export default function UserDashboard() { // Export default moved here
   const stats = [
     {
       title: 'Recently Viewed',
-      value: 3, // Static value
+      value: 3, 
       icon: Eye,
       color: 'bg-blue-500',
     },
     {
       title: 'Favorite Ads',
-      value: 4, // Static value
+      value: 4, 
       icon: Heart,
       color: 'bg-red-500',
     },
     {
       title: 'Saved Searches',
-      value: 5, // Static value
+      value: 5, 
       icon: Search,
       color: 'bg-green-500',
     },
     {
       title: 'Messages',
-      value: 12, // Static value
+      value: 12, 
       icon: MessageCircle,
       color: 'bg-purple-500',
     },
