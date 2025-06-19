@@ -1,6 +1,8 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { Shield, Users, FileText, AlertTriangle } from 'lucide-react';
 import Footer from '../components/Footer';
+import Navbar from '../components/NavBar';
+import FilterSidebar from '../components/FilterSidebar';
 
 export default function TermsAndConditionsPage ()  {
   const sections = [
@@ -46,8 +48,31 @@ export default function TermsAndConditionsPage ()  {
     },
   ];
 
+ const defaultFilters = {
+    category: "All Categories",
+    priceRange: [0, 10000],
+    location: "",
+    sortBy: "newest",
+  };
+
+  const [sidebarOpen, setSidebarOpen] = useState(false);
+  const [filters, setFilters] = useState(defaultFilters);
+
+  const handleFiltersChange = (updatedFilters) => {
+    setFilters(updatedFilters);
+  };
+
+
   return (
-     <section>
+     <section className='bg-white dark:bg-[#182957] text-gray-800 dark:text-gray-200'>
+
+<FilterSidebar
+  isOpen={sidebarOpen}
+  onClose={() => setSidebarOpen(false)}
+  filters={filters || defaultFilters} // fallback to defaults
+  onFiltersChange={handleFiltersChange}
+/>
+      <Navbar />
     <div className="min-h-screen py-12">
       <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
         {/* Header */}
@@ -59,7 +84,7 @@ export default function TermsAndConditionsPage ()  {
             Please read these terms carefully before using our platform
           </p>
           <p className="text-sm text-gray-500 dark:text-gray-400 mt-2">
-            Last updated: January 2024
+            Last updated: June 2025
           </p>
         </div>
 
