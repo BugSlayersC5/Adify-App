@@ -149,7 +149,7 @@ export default function VendorDashboard() {
 
 
   return (
-    <section>
+    <section className='dark:bg-[#192D64] bg-[#F3F8FD]'>
       <Navbar />
       <div className="min-h-screen py-8">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
