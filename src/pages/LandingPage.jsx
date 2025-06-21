@@ -33,7 +33,7 @@ const mockAds = [
   {
     id: 3,
     title: "Samsung Galaxy S22",
-    category: "Phones",
+    category: "Phones", 
     location: "Takoradi",
     price: 6000,
     status: "approved",

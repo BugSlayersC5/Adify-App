@@ -1,37 +1,131 @@
 import React from 'react';
 import { Heart, Eye, MessageCircle, Search, TrendingUp, ShoppingBag } from 'lucide-react';
+import AdCard from '../components/AdCard'; // Make sure this path is correct
 
-export default function UserDashboard() { // Export default moved here
-  // Static user data for UI display
+// --- Dummy Ad Data ---
+// You can move this to a separate file (e.g., dummyAds.js) and import it if your data grows
+const dummyAds = [
+  {
+    id: 1,
+    title: "iPhone 13 Pro",
+    category: "Phones",
+    location: "Accra",
+    price: 7000,
+    status: "approved",
+    image:
+      "https://img.freepik.com/free-photo/smiling-couple-viewing-pictures-camera_53876-14440.jpg",
+    vendorName: "GadgetHub",
+    createdAt: "2024-06-01T10:00:00Z",
+    views: 800,
+    likes: 110,
+  },
+  {
+    id: 'ad2',
+     title: "iPhone 13 Pro",
+    category: "Phones",
+    location: "Accra",
+    price: 7000,
+    status: "approved",
+    image:
+      "https://img.freepik.com/free-photo/smiling-couple-viewing-pictures-camera_53876-14440.jpg",
+    vendorName: "GadgetHub",
+    createdAt: "2024-06-01T10:00:00Z",
+    views: 900,
+    likes: 110,
+  },
+  {
+    id: 'ad3',
+    title: "iPhone 13 Pro",
+    category: "Phones",
+    location: "Accra",
+    price: 7000,
+    status: "approved",
+    image:
+      "https://img.freepik.com/free-photo/smiling-couple-viewing-pictures-camera_53876-14440.jpg",
+    vendorName: "GadgetHub",
+    createdAt: "2024-06-01T10:00:00Z",
+    likes:100,
+  },
+  {
+    id: 'ad4',
+    title: "iPhone 13 Pro",
+    category: "Phones",
+    location: "Accra",
+    price: 7000,
+    status: "approved",
+    image:
+      "https://img.freepik.com/free-photo/smiling-couple-viewing-pictures-camera_53876-14440.jpg",
+    vendorName: "GadgetHub",
+    createdAt: "2024-06-01T10:00:00Z",
+    views: 400,
+    likes: 70,
+  },
+  {
+    id: 'ad5',
+    title: "iPhone 13 Pro",
+    category: "Phones",
+    location: "Accra",
+    price: 7000,
+    status: "approved",
+    image:
+      "https://img.freepik.com/free-photo/smiling-couple-viewing-pictures-camera_53876-14440.jpg",
+    vendorName: "GadgetHub",
+    createdAt: "2024-06-01T10:00:00Z",
+    views: 200,
+    likes: 130,
+   
+  },
+  {
+    id: 'ad6',
+     title: "iPhone 13 Pro",
+    category: "Phones",
+    location: "Accra",
+    price: 7000,
+    status: "approved",
+    image:
+      "https://img.freepik.com/free-photo/smiling-couple-viewing-pictures-camera_53876-14440.jpg",
+    vendorName: "GadgetHub",
+    createdAt: "2024-06-01T10:00:00Z",
+    views: 900,
+    likes: 110,
+  },
+];
+
+export default function UserDashboard() {
   const user = { username: 'Jessica Aning' };
 
-  // Static stats data for UI display
+  // Adjusting static stats value to match the dummy data available
   const stats = [
     {
       title: 'Recently Viewed',
-      value: 3, 
+      value: dummyAds.slice(0, 3).length, // Corresponds to first 3 dummy ads
       icon: Eye,
       color: 'bg-blue-500',
     },
     {
       title: 'Favorite Ads',
-      value: 4, 
+      value: dummyAds.filter(ad => ad.likes > 100).length, // Ads with more than 100 likes
       icon: Heart,
       color: 'bg-red-500',
     },
     {
       title: 'Saved Searches',
-      value: 5, 
+      value: 5,
       icon: Search,
       color: 'bg-green-500',
     },
     {
       title: 'Messages',
-      value: 12, 
+      value: 12,
       icon: MessageCircle,
       color: 'bg-purple-500',
     },
   ];
+
+  // Filter dummy ads for different sections
+  const recentlyViewedAds = dummyAds.slice(0, 3); // Take the first 3 for recently viewed
+  const popularAds = dummyAds.filter(ad => ad.likes > 100).slice(0, 4); // Ads with more than 100 likes
+  const recommendedAds = [...dummyAds].sort(() => 0.5 - Math.random()).slice(0, 6); // Random selection
 
   return (
     <div className="min-h-screen py-8">
@@ -103,71 +197,62 @@ export default function UserDashboard() { // Export default moved here
           </div>
         </div>
 
-        {/* Recently Viewed - Placeholder Section */}
-        <div className="mb-8">
-          <div className="flex items-center justify-between mb-6">
-            <h2 className="text-2xl font-bold text-gray-900 dark:text-white">
-              Recently Viewed
-            </h2>
-            <button className="text-blue-600 dark:text-blue-400 hover:text-blue-700 dark:hover:text-blue-300 font-medium">
-              View All
-            </button>
+        {/* Recently Viewed Ads */}
+        {recentlyViewedAds.length > 0 && (
+          <div className="mb-8">
+            <div className="flex items-center justify-between mb-6">
+              <h2 className="text-2xl font-bold text-gray-900 dark:text-white">
+                Recently Viewed
+              </h2>
+              <button className="text-blue-600 dark:text-blue-400 hover:text-blue-700 dark:hover:text-blue-300 font-medium">
+                View All
+              </button>
+            </div>
+            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+              {recentlyViewedAds.map((ad) => (
+                <AdCard key={ad.id} ad={ad} />
+              ))}
+            </div>
           </div>
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-            {/* Placeholder cards - replace with actual AdCard components later */}
-            {[1, 2, 3].map((item) => (
-              <div key={item} className="card p-4 border rounded-lg shadow-sm bg-gray-50 dark:bg-gray-800 animate-pulse">
-                <div className="h-32 bg-gray-200 dark:bg-gray-700 rounded mb-4"></div>
-                <div className="h-4 bg-gray-200 dark:bg-gray-700 rounded w-3/4 mb-2"></div>
-                <div className="h-4 bg-gray-200 dark:bg-gray-700 rounded w-1/2"></div>
-              </div>
-            ))}
-          </div>
-        </div>
+        )}
 
-        {/* Popular Ads - Placeholder Section */}
-        <div className="mb-8">
-          <div className="flex items-center justify-between mb-6">
-            <h2 className="text-2xl font-bold text-gray-900 dark:text-white">
-              Popular Ads
-            </h2>
-            <button className="text-blue-600 dark:text-blue-400 hover:text-blue-700 dark:hover:text-blue-300 font-medium">
-              View All
-            </button>
+        {/* Popular Ads */}
+        {popularAds.length > 0 && (
+          <div className="mb-8">
+            <div className="flex items-center justify-between mb-6">
+              <h2 className="text-2xl font-bold text-gray-900 dark:text-white">
+                Popular Ads
+              </h2>
+              <button className="text-blue-600 dark:text-blue-400 hover:text-blue-700 dark:hover:text-blue-300 font-medium">
+                View All
+              </button>
+            </div>
+            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
+              {popularAds.map((ad) => (
+                <AdCard key={ad.id} ad={ad} />
+              ))}
+            </div>
           </div>
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
-            {/* Placeholder cards - replace with actual AdCard components later */}
-            {[1, 2, 3, 4].map((item) => (
-              <div key={item} className="card p-4 border rounded-lg shadow-sm bg-gray-50 dark:bg-gray-800 animate-pulse">
-                <div className="h-24 bg-gray-200 dark:bg-gray-700 rounded mb-3"></div>
-                <div className="h-3 bg-gray-200 dark:bg-gray-700 rounded w-3/4 mb-1"></div>
-                <div className="h-3 bg-gray-200 dark:bg-gray-700 rounded w-1/2"></div>
-              </div>
-            ))}
-          </div>
-        </div>
+        )}
 
-        {/* Recommended for You - Placeholder Section */}
-        <div>
-          <div className="flex items-center justify-between mb-6">
-            <h2 className="text-2xl font-bold text-gray-900 dark:text-white">
-              Recommended for You
-            </h2>
-            <button className="text-blue-600 dark:text-blue-400 hover:text-blue-700 dark:hover:text-blue-300 font-medium">
-              View All
-            </button>
+        {/* Recommended for You */}
+        {recommendedAds.length > 0 && (
+          <div>
+            <div className="flex items-center justify-between mb-6">
+              <h2 className="text-2xl font-bold text-gray-900 dark:text-white">
+                Recommended for You
+              </h2>
+              <button className="text-blue-600 dark:text-blue-400 hover:text-blue-700 dark:hover:text-blue-300 font-medium">
+                View All
+              </button>
+            </div>
+            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+              {recommendedAds.map((ad) => (
+                <AdCard key={ad.id} ad={ad} />
+              ))}
+            </div>
           </div>
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-            {/* Placeholder cards - replace with actual AdCard components later */}
-            {[1, 2, 3, 4, 5, 6].map((item) => (
-              <div key={item} className="card p-4 border rounded-lg shadow-sm bg-gray-50 dark:bg-gray-800 animate-pulse">
-                <div className="h-32 bg-gray-200 dark:bg-gray-700 rounded mb-4"></div>
-                <div className="h-4 bg-gray-200 dark:bg-gray-700 rounded w-3/4 mb-2"></div>
-                <div className="h-4 bg-gray-200 dark:bg-gray-700 rounded w-1/2"></div>
-              </div>
-            ))}
-          </div>
-        </div>
+        )}
       </div>
     </div>
   );
