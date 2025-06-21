@@ -1,7 +1,7 @@
 import { Link } from 'react-router';
 import { Eye, Heart, MapPin, Calendar } from 'lucide-react';
 
-const AdCard = ({ ad, showActions = false, onEdit, onDelete }) => {
+export default function AdCard ({ ad, showActions = false, onEdit, onDelete }) {
   const formatPrice = (price) => {
     return new Intl.NumberFormat('en-US', {
       style: 'currency',
@@ -123,4 +123,3 @@ const AdCard = ({ ad, showActions = false, onEdit, onDelete }) => {
   );
 };
 
-export default AdCard;

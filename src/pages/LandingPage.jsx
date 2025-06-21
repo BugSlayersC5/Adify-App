@@ -1,9 +1,12 @@
-import React, { useState, useEffect } from "react";
+import { useState, useEffect } from "react";
 import { Filter, Grid, List } from "lucide-react";
 import AdCard from "../components/AdCard";
 import FilterSidebar from "../components/FilterSidebar";
 import Navbar from "../components/NavBar";
 import Footer from "../components/Footer";
+import SearchWithSuggestions from "../components/SearchWithSuggestions";
+
+const searchSuggestions = ["iPhone", "Samsung", "Toyota", "Dell", "Phones", "Laptops", "Vehicles"];
 
 const mockAds = [
   {
@@ -83,7 +86,7 @@ const mockAds = [
 export default function LandingPage() {
   const [showFilters, setShowFilters] = useState(false);
   const [viewMode, setViewMode] = useState("grid");
-  const [searchQuery, _setSearchQuery] = useState("");
+const [searchQuery, setSearchQuery] = useState("");
   const [filters, setFilters] = useState({
     category: "All Categories",
     priceRange: [0, 100000],
@@ -128,11 +131,11 @@ export default function LandingPage() {
   }, [filters, searchQuery]);
 
   return (
-    <section>
+    <section className="dark:bg-[#192D64] bg-[#F2F7FE]">
       <Navbar />
-      <div className="min-h-screen">
+      <div className="min-h-screen ">
         {/* Hero Section */}
-        <div className="bg-gradient-to-r from-blue-600 to-purple-600 text-white py-16">
+        <div className="bg-gradient-to-r from-blue-600 to-purple-600 text-white py-16 ">
           <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
             <div className="text-center">
               <h1 className="text-4xl md:text-6xl font-bold mb-6 animate-fadeInUp">
@@ -141,12 +144,20 @@ export default function LandingPage() {
               <p className="text-xl md:text-2xl mb-8 text-blue-100 animate-fadeInUp">
                 Discover thousands of products from trusted vendors
               </p>
+                <div className="max-w-2xl mx-auto animate-fadeInUp">
+              <SearchWithSuggestions
+                value={searchQuery}
+                onChange={setSearchQuery}
+                placeholder="Search for products, categories, or keywords..."
+                suggestions={searchSuggestions}
+              />
+            </div>
             </div>
           </div>
         </div>
 
         {/* Main Content */}
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8  ">
           <div className="flex flex-col lg:flex-row gap-8">
             {/* Filters Sidebar */}
             <div className="lg:w-72 flex-shrink-0">
@@ -198,8 +209,8 @@ export default function LandingPage() {
                     onClick={() => setViewMode("list")}
                     className={`p-2 rounded-md transition-colors ${
                       viewMode === "list"
-                        ? "bg-blue-100 text-blue-600 dark:bg-blue-900/20 dark:text-blue-400"
-                        : "text-gray-400 hover:text-gray-600 dark:hover:text-gray-300"
+                        ?'bg-blue-100 text-blue-600 dark:bg-blue-900/20 dark:text-blue-400'
+                      : 'text-gray-400 hover:text-gray-600 dark:hover:text-gray-300'
                     }`}
                   >
                     <List className="h-5 w-5" />
