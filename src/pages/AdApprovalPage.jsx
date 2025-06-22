@@ -607,7 +607,7 @@ const AdApprovalPage = () => {
 }
 
 // --- Main App Component (Only this one is exported as default) ---
-{
+export default function App() {
   return (
     // The main container for the app with the desired blue-black background
     <div>
