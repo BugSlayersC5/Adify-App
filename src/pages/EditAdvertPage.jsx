@@ -1,5 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { Upload, X, DollarSign, Tag, MapPin, FileText, Image as ImageIcon, ArrowLeft, Sun, Moon } from 'lucide-react';
+import Navbar from '../components/NavBar';
+import Footer from '../components/Footer';
 
 // --- Main App Component (Only this one is exported as default) ---
 export default function App() {
@@ -242,40 +244,7 @@ const MessageBox = ({ isOpen, onClose, title, message, type = 'info' }) => {
 };
 
 
-// --- 4. Navbar Component (defined locally) ---
-const Navbar = ({ isDarkMode }) => {
-  const navBg = isDarkMode ? 'bg-gray-950' : 'bg-gray-100';
-  const textColor = isDarkMode ? 'text-white' : 'text-gray-800';
-  const accentColor = isDarkMode ? 'text-blue-400' : 'text-blue-600';
 
-  return (
-    <nav className={`${navBg} ${textColor} p-4 shadow-lg`}>
-      <div className="max-w-7xl mx-auto flex justify-between items-center">
-        <div className={`text-2xl font-bold ${accentColor}`}>Admin Panel</div>
-        <ul className="flex space-x-4">
-          <li><a href="#" className={`hover:${accentColor} transition-colors`}>Dashboard</a></li>
-          <li><a href="#" className={`hover:${accentColor} transition-colors`}>Users</a></li>
-          <li><a href="#" className={`${accentColor} font-semibold`}>Approvals</a></li>
-          <li><a href="#" className={`hover:${accentColor} transition-colors`}>Settings</a></li>
-        </ul>
-      </div>
-    </nav>
-  );
-};
-
-// --- 5. Footer Component (defined locally) ---
-const Footer = ({ isDarkMode }) => {
-  const footerBg = isDarkMode ? 'bg-gray-950' : 'bg-gray-100';
-  const textColor = isDarkMode ? 'text-gray-400' : 'text-gray-600';
-
-  return (
-    <footer className={`${footerBg} ${textColor} p-4 mt-8`}>
-      <div className="max-w-7xl mx-auto text-center text-sm">
-        &copy; {new Date().getFullYear()} Admin Panel. All rights reserved.
-      </div>
-    </footer>
-  );
-};
 
 // --- 6. ThemeToggle Component (defined locally) ---
 const ThemeToggle = ({ toggleTheme, isDarkMode }) => {
