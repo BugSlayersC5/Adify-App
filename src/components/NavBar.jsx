@@ -1,10 +1,15 @@
 import React, { useState } from 'react';
 import { Link, useLocation } from 'react-router-dom';
-import { Menu, X, ShoppingBag, Sun, Moon } from 'lucide-react';
+import { Menu, X, ShoppingBag, Sun, Moon ,} from 'lucide-react';
+
+
 
 export default function Navbar ()  {
   const [isOpen, setIsOpen] = useState(false);
   const location = useLocation();
+  const [showUserMenu, setShowUserMenu] = useState(false);
+
+  
 
   const isActive = (path) => location.pathname === path;
 
@@ -34,7 +39,7 @@ export default function Navbar ()  {
             </Link>
 
             <Link
-              to="/browse"
+              to="/"
               className={`px-3 py-2 rounded-md text-sm font-medium transition-colors ${
                 isActive('/browse')
                   ? 'text-blue-600 bg-blue-50 dark:bg-blue-900/20'
@@ -43,9 +48,9 @@ export default function Navbar ()  {
             >
               Browse Ads
             </Link>
-
+                
             <Link
-              to="/post"
+              to="/post-advert"
               className={`px-3 py-2 rounded-md text-sm font-medium transition-colors ${
                 isActive('/post')
                   ? 'text-blue-600 bg-blue-50 dark:bg-blue-900/20'
@@ -53,7 +58,9 @@ export default function Navbar ()  {
               }`}
             >
               Post Ad
+        
             </Link>
+            
 
             <button
               // onClick={toggleTheme}
@@ -104,7 +111,7 @@ export default function Navbar ()  {
               Browse Ads
             </Link>
             <Link
-              to="/post"
+              to="/browse"
               className="block px-3 py-2 rounded-md text-base font-medium text-gray-700 dark:text-gray-300"
               onClick={() => setIsOpen(false)}
             >

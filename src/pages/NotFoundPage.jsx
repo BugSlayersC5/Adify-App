@@ -1,21 +1,24 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
 import { Home, ArrowLeft, Search } from 'lucide-react';
-
+import  Notfound from '../assets/notfound.jpg';
 export default function NotFoundPage () {
   return (
     <div className="min-h-screen flex items-center justify-center py-12 px-4 sm:px-6 lg:px-8">
       <div className="max-w-md w-full text-center">
         {/* 404 Illustration */}
-        <div className="mb-8">
-          <div className="text-9xl font-bold text-gray-200 dark:text-gray-700 mb-4">
+        <div>
+          {/* <div className="text-9xl font-bold text-gray-200 dark:text-gray-700 mb-4">
             404
+          </div> */}
+          <div >
+            <img src={Notfound} alt="" />
           </div>
           <div className="relative">
-            <Search className="h-16 w-16 text-gray-400 mx-auto animate-pulse" />
-            <div className="absolute -top-2 -right-2 w-6 h-6 bg-red-500 rounded-full flex items-center justify-center">
+            {/* <Search className="h-16 w-16 text-gray-400 mx-auto animate-pulse" /> */}
+            {/* <div className="absolute -top-2 -right-2 w-6 h-6 bg-red-500 rounded-full flex items-center justify-center">
               <span className="text-white text-xs font-bold">!</span>
-            </div>
+            </div> */}
           </div>
         </div>
 
