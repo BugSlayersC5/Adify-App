@@ -44,9 +44,10 @@ export default function Modal({ isOpen, onClose, title, children, size = 'md' })
       <div className="flex min-h-screen items-end justify-center px-4 pt-4 pb-20 text-center sm:block sm:p-0">
         {/* Background overlay */}
         <div
-          className="fixed inset-0 bg-black bg-opacity-50 transition-opacity"
+          className="fixed inset-0 bg-[rgba(0,0,0,0.2)] backdrop-blur-md transition-opacity z-50"
           onClick={onClose}
         />
+        
 
         {/* Center modal */}
         <span
