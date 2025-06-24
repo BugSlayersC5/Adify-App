@@ -3,6 +3,7 @@ import { Link, useNavigate, useLocation } from 'react-router';
 import { Eye, EyeOff, LogIn } from 'lucide-react';
 import Navbar from '../components/NavBar';
 import Footer from '../components/Footer';
+import { apiClient } from '../../api/client';
 
 export default function LoginPage() {
   const [email, setEmail] = useState('');
@@ -31,7 +32,30 @@ export default function LoginPage() {
       navigate(from, { replace: true });
     }, 1000);
   };
+  // const navigate = useNavigate();
 
+  //    const [loading, setLoading] = useState(false);
+       const [error, setError] = useState(null);
+    
+      const loginUser = async (data) => {
+        try {
+            const response = await apiClient.post('/users/login', data, {
+                headers:
+                {
+                    "Content-Type": "application/json"
+                }
+            });
+            console.log(response);
+            localStorage.setItem("ACCESS_TOKEN", response.data.accessToken);
+            navigate('/');
+
+        } catch (err) {
+            console.error('Login error:', err.response?.data || err.message);
+            setError(err.response?.data?.message || 'Login failed. Invalid credentials.');
+        } finally {
+            setLoading(false);
+        }
+    }
   return (
     <section className='dark:bg-[#192D64] bg-[#F3F8FD]' >
       
@@ -54,7 +78,7 @@ export default function LoginPage() {
           </p>
         </div>
 
-        <form className="space-y-6" onSubmit={handleSubmit}>
+      <form action = {loginUser}className="space-y-6" onSubmit={handleSubmit}>
           <div>
             <label
               htmlFor="email"
@@ -95,8 +119,9 @@ export default function LoginPage() {
                 placeholder="Enter your password"
               />
               <button
-                type="button"
-                className="absolute inset-y-0 right-0 pr-3 flex items-center"
+                type="submit" disabled={loading}
+                className="absolute inset-y-0 right-0 pr-3 flex items-center btn-primary"
+                
                 onClick={() => setShowPassword(!showPassword)}
               >
                 {showPassword ? (
