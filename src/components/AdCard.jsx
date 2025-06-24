@@ -1,125 +1,69 @@
 import { Link } from 'react-router';
-import { Eye, Heart, MapPin, Calendar } from 'lucide-react';
+import { MapPin, DollarSign, Eye, Heart } from 'lucide-react';
 
-export default function AdCard ({ ad, showActions = false, onEdit, onDelete }) {
-  const formatPrice = (price) => {
-    return new Intl.NumberFormat('en-US', {
-      style: 'currency',
-      currency: 'USD',
-    }).format(price);
-  };
+export default function AdCard({ ad, viewMode = 'grid' }) {
+  if (!ad) {
+    return null; // Or a placeholder if no ad data is provided
+  }
 
-  const formatDate = (dateString) => {
-    return new Date(dateString).toLocaleDateString('en-US', {
-      year: 'numeric',
-      month: 'short',
-      day: 'numeric',
-    });
-  };
+  // Determine card styling based on viewMode
+  const cardClasses =
+    viewMode === 'grid'
+      ? 'bg-white dark:bg-gray-800 rounded-lg shadow-md hover:shadow-lg transition-shadow overflow-hidden'
+      : 'flex flex-col sm:flex-row bg-white dark:bg-gray-800 rounded-lg shadow-md hover:shadow-lg transition-shadow overflow-hidden';
 
-  const getStatusColor = (status) => {
-    switch (status) {
-      case 'approved':
-        return 'bg-green-100 text-green-800 dark:bg-green-900/20 dark:text-green-400';
-      case 'pending':
-        return 'bg-yellow-100 text-yellow-800 dark:bg-yellow-900/20 dark:text-yellow-400';
-      case 'rejected':
-        return 'bg-red-100 text-red-800 dark:bg-red-900/20 dark:text-red-400';
-      default:
-        return 'bg-gray-100 text-gray-800 dark:bg-gray-900/20 dark:text-gray-400';
-    }
-  };
+  const imageClasses =
+    viewMode === 'grid'
+      ? 'w-full h-48 object-cover'
+      : 'w-full sm:w-48 h-48 sm:h-auto object-cover sm:rounded-l-lg sm:rounded-t-none rounded-t-lg';
+
+  const contentClasses =
+    viewMode === 'grid' ? 'p-4' : 'p-4 flex-1 flex flex-col justify-between';
 
   return (
-    <div className="card group overflow-hidden">
-      <div className="relative">
-        <img
-          src={ad.image}
-          alt={ad.title}
-          className="w-full h-48 object-cover transition-transform duration-300 group-hover:scale-105"
-        />
-        <div className="absolute top-3 left-3">
-          <span className={`px-2 py-1 rounded-full text-xs font-medium ${getStatusColor(ad.status)}`}>
-            {ad.status.charAt(0).toUpperCase() + ad.status.slice(1)}
-          </span>
+    <div className={cardClasses}>
+      <Link to={`/ad/${ad.id}`}>
+        <img src={ad.images[0]} alt={ad.title} className={imageClasses} />
+      </Link>
+      <div className={contentClasses}>
+        <div>
+          <Link to={`/ad/${ad.id}`}>
+            <h3 className="text-lg font-semibold text-gray-900 dark:text-white hover:text-blue-600 dark:hover:text-blue-400 transition-colors mb-2">
+              {ad.title}
+            </h3>
+          </Link>
+          <p className="text-gray-600 dark:text-gray-400 text-sm mb-3 line-clamp-2">
+            {ad.description}
+          </p>
         </div>
-        <div className="absolute top-3 right-3">
-          <span className="bg-blue-600 text-white px-2 py-1 rounded-full text-xs font-medium">
-            {ad.category}
-          </span>
-        </div>
-        <div className="absolute bottom-3 right-3 flex items-center space-x-2 text-white">
-          {ad.views && (
-            <div className="flex items-center space-x-1 bg-black/50 px-2 py-1 rounded-full">
-              <Eye className="h-3 w-3" />
-              <span className="text-xs">{ad.views}</span>
-            </div>
-          )}
-          {ad.likes && (
-            <div className="flex items-center space-x-1 bg-black/50 px-2 py-1 rounded-full">
-              <Heart className="h-3 w-3" />
-              <span className="text-xs">{ad.likes}</span>
-            </div>
-          )}
-        </div>
-      </div>
 
-      <div className="p-4">
-        <div className="flex justify-between items-start mb-2">
-          <h3 className="text-lg font-semibold text-gray-900 dark:text-white line-clamp-1">
-            {ad.title}
-          </h3>
-          <span className="text-xl font-bold text-blue-600">
-            {formatPrice(ad.price)}
+        <div className="flex items-center justify-between text-gray-700 dark:text-gray-300 mb-3">
+          <span className="flex items-center text-blue-600 dark:text-blue-400 font-bold text-xl">
+            <DollarSign className="h-5 w-5 mr-1" />
+            {ad.price.toLocaleString()}
+          </span>
+          <span className="flex items-center text-sm text-gray-500 dark:text-gray-400">
+            <Eye className="h-4 w-4 mr-1" /> {ad.views || 0}
           </span>
         </div>
 
-        <p className="text-gray-600 dark:text-gray-400 text-sm line-clamp-2 mb-3">
-          {ad.description}
-        </p>
-
-        <div className="flex items-center justify-between text-xs text-gray-500 dark:text-gray-400 mb-3">
-          <div className="flex items-center space-x-1">
-            <MapPin className="h-3 w-3" />
-            <span>{ad.location || 'Location not specified'}</span>
-          </div>
-          <div className="flex items-center space-x-1">
-            <Calendar className="h-3 w-3" />
-            <span>{formatDate(ad.createdAt)}</span>
-          </div>
+        <div className="flex items-center text-sm text-gray-500 dark:text-gray-400 mb-3">
+          <MapPin className="h-4 w-4 mr-1" />
+          <span>{ad.location}</span>
         </div>
 
-        <div className="flex items-center justify-between">
-          <span className="text-sm text-gray-600 dark:text-gray-400">
-            by {ad.vendorName}
+        <div className="flex items-center justify-between mt-auto">
+          <span className="text-xs text-gray-500 dark:text-gray-400">
+            Posted: {new Date(ad.createdAt).toLocaleDateString()}
           </span>
-
-          {showActions ? (
-            <div className="flex space-x-2">
-              <button
-                onClick={() => onEdit && onEdit(ad.id)}
-                className="px-3 py-1 bg-blue-100 text-blue-600 rounded-md text-sm hover:bg-blue-200 transition-colors"
-              >
-                Edit
-              </button>
-              <button
-                onClick={() => onDelete && onDelete(ad.id)}
-                className="px-3 py-1 bg-red-100 text-red-600 rounded-md text-sm hover:bg-red-200 transition-colors"
-              >
-                Delete
-              </button>
-            </div>
-          ) : (
-            <Link
-              to={`/ad/${ad.id}`}
-              className="px-4 py-1 bg-blue-100 text-blue-600 rounded-md text-sm hover:bg-blue-200 transition-colors"
-            >
-              View Details
-            </Link>
-          )}
+          <button
+            className="p-1 rounded-full text-gray-400 hover:text-red-500 transition-colors"
+            aria-label="Add to favorites"
+          >
+            <Heart className="h-5 w-5" />
+          </button>
         </div>
       </div>
     </div>
   );
-};
-
+}

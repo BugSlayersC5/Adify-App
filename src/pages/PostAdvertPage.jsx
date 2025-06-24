@@ -1,17 +1,9 @@
-import { useState } from 'react';
-import { useNavigate } from 'react-router';
-import {
-  Upload,
-  X,
-  DollarSign,
-  Tag,
-  MapPin,
-  FileText,
-  Image as ImageIcon,
-} from 'lucide-react';
+
+import { Upload, X, DollarSign, Tag, MapPin, FileText, Image as ImageIcon, } from 'lucide-react';
 import Footer from '../components/Footer';
 import Navbar from '../components/NavBar';
 import { apiClient } from '../../api/client';
+import SubmitButton from '../components/SubmitButton';
 
 const categories = [
   'Electronics',
@@ -26,99 +18,23 @@ const categories = [
   'Other',
 ];
 
+// CONSTANTS FOR IMAGE LIMITS
+const MAX_TOTAL_IMAGE_SIZE_MB = 5; // Total limit for all images combined
+const MAX_IMAGE_SIZE_MB_PER_FILE = 5; // Individual file size limit (can be same or smaller than total)
+const MAX_IMAGES = 5; // Maximum number of images allowed
+
 export default function PostAdvertPage() {
-  const navigate = useNavigate();
-  const [loading, setLoading] = useState(false);
-  const [imagePreview, setImagePreview] = useState('');
-  const [formData, setFormData] = useState({
-    title: '',
-    description: '',
-    price: '',
-    category: '',
-    location: '',
-    image: '',
-  });
-
-  const handleInputChange = (e) => {
-    const { name, value } = e.target;
-    setFormData((prev) => ({ ...prev, [name]: value }));
-  };
-
- const MAX_SIZE_MB = 1; // 1 MB
-
-const handleImageUpload = (e) => {
-  const file = e.target.files?.[0];
-  if (file) {
-    if (file.size > MAX_SIZE_MB * 1024 * 1024) {
-      alert('Image must be less than 1MB');
-      return;
-    }
-
-    const reader = new FileReader();
-    reader.onload = (event) => {
-      const result = event.target?.result;
-      setImagePreview(result);
-      setFormData((prev) => ({ ...prev, image: result }));
-    };
-    reader.readAsDataURL(file);
-  }
-};
-
-
-  const removeImage = () => {
-    setImagePreview('');
-    setFormData((prev) => ({ ...prev, image: '' }));
-  };
-
   const postAd = async (data) => {
+
     try {
-     
-      const response = await apiClient.post(`/ad`, data, {
+      const response = await apiClient.post('/adverts', data, {
         headers: {
-          'Content-Type': 'application/json',
-        },
+            Authorization: `Bearer ${localStorage.getItem("ACCESS_TOKEN")}`
+        }
       });
-      console.log(response);
-      return response.data;
-    } catch (error) {
-      console.error('Error posting ad:', error);
-    }
-  };
 
-  const handleSubmit = async (e) => {
-    e.preventDefault();
-
-    // Basic validation
-    if (!formData.title || !formData.description || !formData.price || !formData.category) {
-      alert('Please fill in all required fields');
-      return;
-    }
-
-    if (isNaN(Number(formData.price)) || Number(formData.price) <= 0) {
-      alert('Please enter a valid price');
-      return;
-    }
-
-    setLoading(true);
-
-    try {
-      const imageUrl =
-        formData.image ||
-        'https://images.pexels.com/photos/3184291/pexels-photo-3184291.jpeg?auto=compress&cs=tinysrgb&w=800';
-
-      const adData = {
-        ...formData,
-        image: imageUrl,
-        status: 'pending',
-      };
-
-      await postAd(adData);
-      alert('Ad posted successfully!');
-      navigate('/vendor-dashboard');
-    } catch {
-      alert('Something went wrong while posting your ad.');
-    } finally {
-      setLoading(false);
+    } catch (err) {
+      console.error(err.response?.data || err.message);
     }
   };
 
@@ -136,47 +52,31 @@ const handleImageUpload = (e) => {
             </p>
           </div>
 
-          <form onSubmit={handleSubmit} className="space-y-6">
+          <form action={postAd} className="space-y-6">
             {/* Image Upload */}
             <div className="card">
-              <div className="p-6">
+              <div className="p-6 relative">
                 <label className="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-3">
                   <ImageIcon className="inline h-4 w-4 mr-1" />
-                  Product Image
+                  Product Images
                 </label>
 
-                {imagePreview ? (
-                  <div className="relative">
-                    <img
-                      src={imagePreview}
-                      alt="Preview"
-                      className="w-full h-64 object-cover rounded-lg"
-                    />
-                    <button
-                      type="button"
-                      onClick={removeImage}
-                      className="absolute top-2 right-2 p-1 bg-red-500 text-white rounded-full hover:bg-red-600 transition-colors"
-                    >
-                      <X className="h-4 w-4" />
-                    </button>
-                  </div>
-                ) : (
-                  <div className="border-2 border-dashed border-gray-300 dark:border-gray-600 rounded-lg p-8 text-center relative">
-                    <Upload className="h-12 w-12 text-gray-400 mx-auto mb-4" />
-                    <p className="text-gray-600 dark:text-gray-400 mb-2">
-                      Click to upload an image or drag and drop
-                    </p>
-                    <p className="text-sm text-gray-500 dark:text-gray-500">
-                      PNG, JPG, GIF up to 10MB
-                    </p>
-                    <input
-                      type="file"
-                      accept="image/*"
-                      onChange={handleImageUpload}
-                      className="absolute inset-0 w-full h-full opacity-0 cursor-pointer"
-                    />
-                  </div>
-                )}
+                <Upload className="h-12 w-12 text-gray-400 mx-auto mb-4" />
+                <p className="text-gray-600 dark:text-gray-400 mb-2">
+                  Click to upload images or drag and drop
+                </p>
+                <p className="text-sm text-gray-500 dark:text-gray-500">
+                  PNG, JPG, GIF up to {MAX_IMAGE_SIZE_MB_PER_FILE}MB each.
+                  Total max {MAX_TOTAL_IMAGE_SIZE_MB}MB for {MAX_IMAGES} pictures.
+                </p>
+                <input
+                  type="file"
+                  name='images'
+                  accept="image/*"
+                  multiple
+                  className="absolute inset-0 w-full h-full opacity-0 cursor-pointer"
+                />
+
               </div>
             </div>
 
@@ -188,9 +88,8 @@ const handleImageUpload = (e) => {
                     <FileText className="inline h-4 w-4 mr-1" /> Title *
                   </label>
                   <input
+                  type='text'
                     name="title"
-                    value={formData.title}
-                    onChange={handleInputChange}
                     required
                     className="input-field"
                     placeholder="Enter a catchy title"
@@ -204,8 +103,6 @@ const handleImageUpload = (e) => {
                   <input
                     type="number"
                     name="price"
-                    value={formData.price}
-                    onChange={handleInputChange}
                     required
                     min="0"
                     className="input-field"
@@ -219,8 +116,6 @@ const handleImageUpload = (e) => {
                   </label>
                   <select
                     name="category"
-                    value={formData.category}
-                    onChange={handleInputChange}
                     required
                     className="input-field"
                   >
@@ -239,10 +134,8 @@ const handleImageUpload = (e) => {
                   </label>
                   <input
                     name="location"
-                    value={formData.location}
-                    onChange={handleInputChange}
                     className="input-field"
-                    placeholder="City, State"
+                    placeholder="City"
                   />
                 </div>
               </div>
@@ -256,8 +149,6 @@ const handleImageUpload = (e) => {
                 </label>
                 <textarea
                   name="description"
-                  value={formData.description}
-                  onChange={handleInputChange}
                   required
                   rows={5}
                   className="input-field resize-none"
@@ -266,23 +157,8 @@ const handleImageUpload = (e) => {
               </div>
             </div>
 
-            {/* Preview */}
-            {formData.title && (
-              <div className="card">
-                <div className="p-6">
-                  <h2 className="text-lg font-semibold text-gray-900 dark:text-white mb-4">
-                    Preview
-                  </h2>
-                  <div className="border rounded-lg p-4">
-                    <div className="flex justify-between items-center">
-                      <h3>{formData.title}</h3>
-                      <span>${Number(formData.price).toFixed(2)}</span>
-                    </div>
-                    <p className="text-sm">{formData.description}</p>
-                  </div>
-                </div>
-              </div>
-            )}
+
+
 
             {/* Submit */}
             <div className="flex justify-end gap-4">
@@ -293,9 +169,7 @@ const handleImageUpload = (e) => {
               >
                 Cancel
               </button>
-              <button type="submit" disabled={loading} className="btn-primary">
-                {loading ? 'Posting...' : 'Post Advertisement'}
-              </button>
+              <SubmitButton className="btn-primary" title={'Post Advertisment'} />
             </div>
           </form>
         </div>
