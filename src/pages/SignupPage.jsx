@@ -1,12 +1,20 @@
-import React, { useState } from 'react';
-import { Link, useNavigate } from 'react-router-dom';
+import { useState } from 'react';
+import { Link, useNavigate } from 'react-router';
 import { Eye, EyeOff, UserPlus, Store, Shield, User } from 'lucide-react';
+import { apiClient } from '../../api/client';
 
 export default function SignupPage() {
 
- const [formData, setFormData] = useState({
+  const navigate = useNavigate();
+  const [loading, setLoading] = useState(false);
+
+  const [formData, setFormData] = useState({
     role: "user", // default selection
   });
+
+  const [showPassword, setShowPassword] = useState(false);
+const [showConfirmPassword, setShowConfirmPassword] = useState(false);
+
 
   const handleInputChange = (e) => {
     const { name, value } = e.target;
@@ -15,6 +23,24 @@ export default function SignupPage() {
       [name]: value,
     }));
   };
+
+  const registerUser = async (data) => {
+    setLoading(true);
+    try {
+      const response = await apiClient.post('/users/signup', data, {
+        headers: {
+          "Content-Type": "application/json"
+        }
+      });
+      console.log(response);
+      navigate("/login");
+    } catch (error) {
+      console.log(error)
+    } finally {
+      setLoading(false);
+    }
+  }
+
 
 
   return (
@@ -36,21 +62,36 @@ export default function SignupPage() {
           </p>
         </div>
 
-        <form className="space-y-6">
-          {/* Username */}
+        <form action={registerUser} className="space-y-6">
+          {/* FirstName */}
           <div>
-            <label htmlFor="username" className="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-2">
-              Username
+            <label htmlFor="firstName" className="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-2">
+              First Name
             </label>
             <input
-              id="username"
-              name="username"
+              id="firstName"
+              name="firstName"
               type="text"
               required
-              // value={formData.username}
-              // onChange={handleInputChange}
+              onChange={handleInputChange}
               className="input-field"
-              placeholder="Enter your username"
+              placeholder="Enter your first name"
+            />
+          </div>
+
+          {/* LastName */}
+          <div>
+            <label htmlFor="lastName" className="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-2">
+              Last Name
+            </label>
+            <input
+              id="lastName"
+              name="lastName"
+              type="text"
+              required
+              onChange={handleInputChange}
+              className="input-field"
+              placeholder="Enter your last name"
             />
           </div>
 
@@ -65,8 +106,7 @@ export default function SignupPage() {
               type="email"
               autoComplete="email"
               required
-              // value={formData.email}
-              // onChange={handleInputChange}
+              onChange={handleInputChange}
               className="input-field"
               placeholder="Enter your email"
             />
@@ -75,67 +115,65 @@ export default function SignupPage() {
           {/* Role Selection */}
 
           <div className="">
-           <div>
-      <label className="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-3">
-        Account Type
-      </label>
+            <div>
+              <label className="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-3">
+                Account Type
+              </label>
 
-      <div className="grid grid-cols-1 gap-3">
-        {/* User Option */}
-        <label
-          className={`relative flex items-center p-4 border rounded-lg cursor-pointer transition-colors ${
-            formData.role === "user"
-              ? "border-blue-500 bg-blue-50 dark:bg-blue-900/20"
-              : "border-gray-300 dark:border-gray-600 hover:bg-gray-50 dark:hover:bg-gray-700"
-          }`}
-        >
-          <input
-            type="radio"
-            name="role"
-            value="user"
-            checked={formData.role === "user"}
-            onChange={handleInputChange}
-            className="sr-only"
-          />
-          <User className="h-5 w-5 text-blue-600 mr-3" />
-          <div>
-            <div className="text-sm font-medium text-gray-900 dark:text-white">
-              Regular User
-            </div>
-            <div className="text-xs text-gray-500 dark:text-gray-400">
-              Buy, browse and interact with vendors.
-            </div>
-          </div>
-        </label>
+              <div className="grid grid-cols-1 gap-3">
+                {/* User Option */}
+                <label
+                  className={`relative flex items-center p-4 border rounded-lg cursor-pointer transition-colors ${formData.role === "user"
+                      ? "border-blue-500 bg-blue-50 dark:bg-blue-900/20"
+                      : "border-gray-300 dark:border-gray-600 hover:bg-gray-50 dark:hover:bg-gray-700"
+                    }`}
+                >
+                  <input
+                    type="radio"
+                    name="role"
+                    value="user"
+                    checked={formData.role === "user"}
+                    onChange={handleInputChange}
+                    className="sr-only"
+                  />
+                  <User className="h-5 w-5 text-blue-600 mr-3" />
+                  <div>
+                    <div className="text-sm font-medium text-gray-900 dark:text-white">
+                      Regular User
+                    </div>
+                    <div className="text-xs text-gray-500 dark:text-gray-400">
+                      Buy, browse and interact with vendors.
+                    </div>
+                  </div>
+                </label>
 
-        {/* Vendor Option */}
-        <label
-          className={`relative flex items-center p-4 border rounded-lg cursor-pointer transition-colors ${
-            formData.role === "vendor"
-              ? "border-blue-500 bg-blue-50 dark:bg-blue-900/20"
-              : "border-gray-300 dark:border-gray-600 hover:bg-gray-50 dark:hover:bg-gray-700"
-          }`}
-        >
-          <input
-            type="radio"
-            name="role"
-            value="vendor"
-            checked={formData.role === "vendor"}
-            onChange={handleInputChange}
-            className="sr-only"
-          />
-          <Store className="h-5 w-5 text-blue-600 mr-3" />
-          <div>
-            <div className="text-sm font-medium text-gray-900 dark:text-white">
-              Vendor
+                {/* Vendor Option */}
+                <label
+                  className={`relative flex items-center p-4 border rounded-lg cursor-pointer transition-colors ${formData.role === "vendor"
+                      ? "border-blue-500 bg-blue-50 dark:bg-blue-900/20"
+                      : "border-gray-300 dark:border-gray-600 hover:bg-gray-50 dark:hover:bg-gray-700"
+                    }`}
+                >
+                  <input
+                    type="radio"
+                    name="role"
+                    value="vendor"
+                    checked={formData.role === "vendor"}
+                    onChange={handleInputChange}
+                    className="sr-only"
+                  />
+                  <Store className="h-5 w-5 text-blue-600 mr-3" />
+                  <div>
+                    <div className="text-sm font-medium text-gray-900 dark:text-white">
+                      Vendor
+                    </div>
+                    <div className="text-xs text-gray-500 dark:text-gray-400">
+                      Post and manage advertisements for your business.
+                    </div>
+                  </div>
+                </label>
+              </div>
             </div>
-            <div className="text-xs text-gray-500 dark:text-gray-400">
-              Post and manage advertisements for your business.
-            </div>
-          </div>
-        </label>
-      </div>
-    </div>
 
 
           </div>
@@ -143,36 +181,21 @@ export default function SignupPage() {
           <div>
 
             <div className="grid grid-cols-1 gap-3">
-              {/* {roleOptions.map((option) => { */}
-              {/* const IconComponent = option.icon; */}
-              {/* return ( */}
               <label
-              // key={option.value}
-              // className={`relative flex items-center p-4 border rounded-lg cursor-pointer transition-colors ${
-              //   formData.role === option.value
-              //     ? 'border-blue-500 bg-blue-50 dark:bg-blue-900/20'
-              //     : 'border-gray-300 dark:border-gray-600 hover:bg-gray-50 dark:hover:bg-gray-700'
-              // }`}
               >
                 <input
                   type="radio"
                   name="role"
-                  // value={option.value}
-                  // checked={formData.role === option.value}
-                  // onChange={handleInputChange}
                   className="sr-only"
                 />
-                {/* <IconComponent className="h-5 w-5 text-blue-600 mr-3" /> */}
+             
                 <div>
                   <div className="text-sm font-medium text-gray-900 dark:text-white">
-                    {/* {option.label} */}
                   </div>
                   <div className="text-xs text-gray-500 dark:text-gray-400">
-                    {/* {option.description} */}
                   </div>
                 </div>
               </label>
-              {/* ); */}
 
             </div>
           </div>
@@ -186,24 +209,22 @@ export default function SignupPage() {
               <input
                 id="password"
                 name="password"
-                // type={showPassword ? 'text' : 'password'}
+                type={showPassword ? 'text' : 'password'}
                 autoComplete="new-password"
                 required
-                // value={formData.password}
-                // onChange={handleInputChange}
                 className="input-field pr-10"
                 placeholder="Enter your password"
               />
               <button
                 type="button"
                 className="absolute inset-y-0 right-0 pr-3 flex items-center"
-              // onClick={() => setShowPassword(!showPassword)}
+              onClick={() => setShowPassword(!showPassword)}
               >
-                {/* {showPassword ? (
+                {showPassword ? (
                   <EyeOff className="h-5 w-5 text-gray-400" />
                 ) : (
                   <Eye className="h-5 w-5 text-gray-400" />
-                )} */}
+                )}
               </button>
             </div>
           </div>
@@ -217,24 +238,23 @@ export default function SignupPage() {
               <input
                 id="confirmPassword"
                 name="confirmPassword"
-                // type={showConfirmPassword ? 'text' : 'password'}
+                type={showConfirmPassword ? 'text' : 'password'}
                 autoComplete="new-password"
                 required
-                // value={formData.confirmPassword}
-                // onChange={handleInputChange}
+             
                 className="input-field pr-10"
                 placeholder="Confirm your password"
               />
               <button
                 type="button"
                 className="absolute inset-y-0 right-0 pr-3 flex items-center"
-              // onClick={() => setShowConfirmPassword(!showConfirmPassword)}
+              onClick={() => setShowConfirmPassword(!showConfirmPassword)}
               >
-                {/* {showConfirmPassword ? (
+                {showConfirmPassword ? (
                   <EyeOff className="h-5 w-5 text-gray-400" />
                 ) : (
                   <Eye className="h-5 w-5 text-gray-400" />
-                )} */}
+                )}
               </button>
             </div>
           </div>
@@ -258,19 +278,11 @@ export default function SignupPage() {
 
           <button
             type="submit"
-            // disabled={loading}
-            className="w-full btn-primary flex justify-center items-center space-x-2 disabled:opacity-50 disabled:cursor-not-allowed"
+            className="w-full btn-primary flex justify-center items-center space-x-2 disabled:opacity-50 disabled:cursor-not-allowed cursor-pointer"
           >
             <UserPlus className="h-4 w-4" />
             <span>Create Account</span>
-            {/* {loading ? (
-              <div className="animate-spin rounded-full h-4 w-4 border-b-2 border-white"></div>
-            ) : (
-              <>
-                <UserPlus className="h-4 w-4" />
-                <span>Create Account</span>
-              </>
-            )} */}
+            
           </button>
         </form>
 
