@@ -11,7 +11,7 @@ export default function Footer () {
           <div className="col-span-1 md:col-span-2">
             <div className="flex items-center space-x-2 mb-4">
               <ShoppingBag className="h-8 w-8 text-blue-400" />
-              <span className="text-xl font-bold">AdMarket</span>
+              <span className="text-xl font-bold">ADIFY</span>
             </div>
             <p className="text-gray-400 mb-4 max-w-md">
               Your premier destination for buying and selling advertisements. Connect with customers and grow your business with our platform.
@@ -19,15 +19,15 @@ export default function Footer () {
             <div className="space-y-2">
               <div className="flex items-center space-x-2 text-gray-400">
                 <Mail className="h-4 w-4" />
-                <span>contact@admarket.com</span>
+                <span>contact@adify.com</span>
               </div>
               <div className="flex items-center space-x-2 text-gray-400">
                 <Phone className="h-4 w-4" />
-                <span>+1 (555) 123-4567</span>
+                <span>+23 (32) 0686 1637</span>
               </div>
               <div className="flex items-center space-x-2 text-gray-400">
                 <MapPin className="h-4 w-4" />
-                <span>123 Business St, City, State 12345</span>
+                <span>123 Business St, City, Accra 423</span>
               </div>
             </div>
           </div>
