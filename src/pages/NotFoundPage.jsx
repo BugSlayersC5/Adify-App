@@ -1,5 +1,4 @@
-import React from 'react';
-import { Link } from 'react-router-dom';
+import { Link } from 'react-router';
 import { Home, ArrowLeft, Search } from 'lucide-react';
 import  Notfound from '../assets/notfound.jpg';
 export default function NotFoundPage () {

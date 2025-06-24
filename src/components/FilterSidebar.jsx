@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import { useState } from "react";
 import { X, Filter, DollarSign, Tag, MapPin } from "lucide-react";
 
 

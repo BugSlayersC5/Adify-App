@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react'; // Corrected import syntax
+import { useState, useEffect } from 'react'; // Corrected import syntax
 import { CheckCircle, XCircle, Eye, Search, Filter, Info, Sun, Moon, Sparkles } from 'lucide-react';
 import Navbar from '../components/NavBar'; 
 import Footer from "../components/Footer";

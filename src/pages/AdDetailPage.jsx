@@ -1,5 +1,5 @@
-import React, { useState, useEffect } from 'react';
-import { useParams, useNavigate } from 'react-router-dom';
+import { useState, useEffect } from 'react';
+import { useParams, useNavigate } from 'react-router';
 import { ArrowLeft, MapPin, Calendar, Eye, Heart, Share2, Flag, User, Phone, Mail } from 'lucide-react';
 
 const mockAds = [

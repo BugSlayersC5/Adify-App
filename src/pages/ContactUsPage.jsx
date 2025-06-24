@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import { useState } from 'react';
 import { Mail, Phone, MapPin, Send, MessageCircle, Clock, Users } from 'lucide-react';
 import Navbar from '../components/NavBar';
 import Footer from '../components/Footer';

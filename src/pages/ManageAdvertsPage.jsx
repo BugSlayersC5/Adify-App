@@ -1,6 +1,5 @@
-// Updated ManageAdvertsPage.jsx
-import React, { useState, useEffect } from "react";
-import { Link } from "react-router-dom";
+import  { useState, useEffect } from "react";
+import { Link } from "react-router";
 import { Edit, Trash2, Eye, Plus, Search, Filter } from "lucide-react";
 import Modal from "../components/Modal";
 import Navbar from "../components/NavBar";

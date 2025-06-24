@@ -1,4 +1,3 @@
-import React from 'react';
 import { Heart, Eye, MessageCircle, Search, TrendingUp, ShoppingBag } from 'lucide-react';
 import AdCard from '../components/AdCard';
 import Navbar from '../components/NavBar';

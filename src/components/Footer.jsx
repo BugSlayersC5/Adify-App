@@ -1,5 +1,4 @@
-import React from 'react';
-import { Link } from 'react-router-dom';
+import { Link } from 'react-router';
 import { ShoppingBag, Mail, Phone, MapPin } from 'lucide-react';
 
 export default function Footer () {

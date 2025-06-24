@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import { useState, useEffect } from 'react';
 import { Upload, X, DollarSign, Tag, MapPin, FileText, Image as ImageIcon, ArrowLeft, Sun, Moon } from 'lucide-react';
 import Navbar from '../components/NavBar';
 import Footer from '../components/Footer';
