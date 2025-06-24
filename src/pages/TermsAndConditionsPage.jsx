@@ -76,11 +76,11 @@ export default function TermsAndConditionsPage() {
           <div className="card mb-8">
             <div className="p-8">
               <h2 className="text-2xl font-bold text-gray-900 dark:text-white mb-4">
-                Welcome to AdMarket
+                Welcome to Adify
               </h2>
               <p className="text-gray-600 dark:text-gray-400 leading-relaxed">
                 These Terms and Conditions ("Terms") govern your use of the
-                AdMarket platform and services. By accessing or using our
+                Adify platform and services. By accessing or using our
                 platform, you agree to be bound by these Terms. If you do not
                 agree with any part of these terms, you may not use our
                 services.
@@ -130,7 +130,7 @@ export default function TermsAndConditionsPage() {
                   Intellectual Property
                 </h3>
                 <p className="text-gray-600 dark:text-gray-400 text-sm leading-relaxed">
-                  All content on AdMarket, including logos, text, graphics, and
+                  All content on Adify, including logos, text, graphics, and
                   software, is the property of AdMarket or its licensors and is
                   protected by copyright and other intellectual property laws.
                 </p>
@@ -143,7 +143,7 @@ export default function TermsAndConditionsPage() {
                   Limitation of Liability
                 </h3>
                 <p className="text-gray-600 dark:text-gray-400 text-sm leading-relaxed">
-                  AdMarket shall not be liable for any indirect, incidental,
+                  Adify shall not be liable for any indirect, incidental,
                   special, consequential, or punitive damages resulting from
                   your use of the platform or any transactions conducted through
                   it.
@@ -193,14 +193,14 @@ export default function TermsAndConditionsPage() {
                   href="mailto:legal@admarket.com"
                   className="text-blue-600 dark:text-blue-400 hover:text-blue-700 dark:hover:text-blue-300 font-medium"
                 >
-                  legal@admarket.com
+                  legal@adify.com
                 </a>
                 <span className="hidden sm:block text-gray-400">•</span>
                 <a
                   href="tel:+15551234567"
                   className="text-blue-600 dark:text-blue-400 hover:text-blue-700 dark:hover:text-blue-300 font-medium"
                 >
-                  +1 (555) 123-4567
+                  +23 (320) 686-1637
                 </a>
               </div>
             </div>
@@ -210,7 +210,7 @@ export default function TermsAndConditionsPage() {
           <div className="mt-12 p-6 bg-blue-50 dark:bg-blue-900/20 rounded-lg border border-blue-200 dark:border-blue-800">
             <p className="text-blue-800 dark:text-blue-200 text-center">
               <strong>
-                By using AdMarket, you acknowledge that you have read,
+                By using Adify, you acknowledge that you have read,
                 understood, and agree to be bound by these Terms and Conditions.
               </strong>
             </p>
