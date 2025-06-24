@@ -1,9 +1,11 @@
+// LoginPage.js (Updated to use AuthContext's login function)
 import { useState } from 'react';
-import { Link, useNavigate, useLocation } from 'react-router'; // Corrected import for Link, useNavigate, useLocation
+import { Link, useNavigate, useLocation } from 'react-router-dom'; // Changed to react-router-dom for Link
 import { Eye, EyeOff, LogIn } from 'lucide-react';
-import Navbar from '../components/NavBar';
-import Footer from '../components/Footer';
-import { apiClient } from '../../api/client';
+import Navbar from '../components/NavBar'; // Ensure correct path for Navbar
+import Footer from '../components/Footer'; // Ensure correct path for Footer
+import { apiClient } from '../../api/client'; // Assuming this path is correct
+import { useAuth } from '../context/AuthContext'; // Import useAuth
 
 export default function LoginPage() {
   const [email, setEmail] = useState('');
@@ -13,6 +15,7 @@ export default function LoginPage() {
   const [error, setError] = useState(null); // State for error messages
   const navigate = useNavigate();
   const location = useLocation();
+  const { login: authLogin } = useAuth(); // Get the login function from AuthContext
 
   const from = location.state?.from?.pathname || '/';
 
@@ -25,8 +28,15 @@ export default function LoginPage() {
           "Content-Type": "application/json"
         }
       });
-      localStorage.setItem("ACCESS_TOKEN", response.data.token);
-      
+
+      // Your backend returns { user, token }
+      const { user, token } = response.data;
+
+      localStorage.setItem("ACCESS_TOKEN", token); // Store the token
+
+      // IMPORTANT: Call the login function from AuthContext with the user data
+      authLogin(user); // Pass the user object from the backend response
+
       // Navigate to the 'from' path or default to home after successful login
       navigate(from, { replace: true });
 
@@ -53,7 +63,7 @@ export default function LoginPage() {
   return (
     <section className='dark:bg-[#192D64] bg-[#F3F8FD]'>
 
-      <Navbar />
+      <Navbar /> {/* Ensure Navbar is correctly rendered here */}
       <div className="min-h-screen flex items-center justify-center py-12 px-4 sm:px-6 lg:px-8">
         <div className="max-w-md w-full">
           <div className="text-center mb-8">
@@ -113,7 +123,7 @@ export default function LoginPage() {
                   placeholder="Enter your password"
                 />
                 <button
-                  type="button" 
+                  type="button"
                   className="absolute inset-y-0 right-0 pr-3 flex items-center"
                   onClick={() => setShowPassword(!showPassword)}
                 >

@@ -16,6 +16,8 @@ import AdApprovalPage from "./pages/AdApprovalPage";
 import NotFoundPage from "./pages/NotFoundPage";
 import ContactUsPage from "./pages/ContactUsPage";
 import TermsAndConditionsPage from "./pages/TermsAndConditionsPage";
+import { AuthProvider } from "./context/AuthContext";
+import { ThemeProvider } from "./context/ThemeContext";
 
 const adifyRouter = createBrowserRouter([
   { path: "/", element: <LandingPage /> },
@@ -35,5 +37,12 @@ const adifyRouter = createBrowserRouter([
 ]);
 
 export default function App() {
-  return <RouterProvider router={adifyRouter} />
+  return(
+    <ThemeProvider>
+    <AuthProvider> 
+    <RouterProvider router={adifyRouter} />
+    </AuthProvider>
+    </ThemeProvider>
+  );
+  
 }
