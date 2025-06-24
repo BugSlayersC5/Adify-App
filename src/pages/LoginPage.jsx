@@ -25,8 +25,8 @@ export default function LoginPage() {
           "Content-Type": "application/json"
         }
       });
-      console.log(response);
-      localStorage.setItem("ACCESS_TOKEN", response.data.data.accessToken);
+      localStorage.setItem("ACCESS_TOKEN", response.data.token);
+      
       // Navigate to the 'from' path or default to home after successful login
       navigate(from, { replace: true });
 
