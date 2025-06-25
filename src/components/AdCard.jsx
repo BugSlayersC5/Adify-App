@@ -76,7 +76,7 @@ export default function AdCard({ ad, viewMode = "grid", onEdit, onDelete }) {
           )}
           {onDelete && ( // Only render if onDelete prop is provided
             <button
-              onClick={() => onDelete(ad.id)}
+              onClick={() => onDelete(ad.id)} // Use the prop passed down
               className="flex items-center px-3 py-1.5 bg-red-500 text-white rounded-md hover:bg-red-600 transition-colors duration-200 text-sm font-semibold"
               aria-label={`Delete ${ad.title}`}
             >

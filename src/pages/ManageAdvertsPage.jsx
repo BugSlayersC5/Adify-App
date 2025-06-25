@@ -2,10 +2,10 @@
 import { Link, useNavigate, useParams } from "react-router";
 import { Edit, Trash2, Eye, Plus, Search, Filter } from "lucide-react";
 import Modal from "../components/Modal";
-import Navbar from "../components/NavBar";
+import Navbar from "../components/Navbar";
 import Footer from "../components/Footer";
-import useSWR from "swr";
-import { apiFetcher } from "../../api/client";
+import useSWR, { mutate } from "swr";
+import { apiClient, apiFetcher } from "../../api/client";
 import AdCard from "../components/AdCard";
 
 export default function ManageAdvertsPage() {
@@ -31,6 +31,25 @@ export default function ManageAdvertsPage() {
       </div>
     );
   }
+
+  const handleDelete = async (adId) => {
+  if (confirm("Are you sure you want to delete this advert?")) {
+    try {
+      await apiClient.delete(`/adverts/${adId}`, {
+        headers: {
+          Authorization: `Bearer ${localStorage.getItem("ACCESS_TOKEN")}`,
+        },
+      });
+      console.log("✅ Advert deleted:", adId);
+      mutate(`adverts/my-adverts`); // Refresh the data from SWR
+    } catch (error) {
+      console.error("❌ Failed to delete advert:", error);
+      alert("Failed to delete advert. Please try again.");
+    }
+  }
+};
+
+
 
   return (
     <section className="dark:bg-[#192D64] bg-[#F2F7FE]">
@@ -65,13 +84,7 @@ export default function ManageAdvertsPage() {
                 // Navigate to edit page with ad ID
                 navigate(`/edit-advert/${adId}`);
               }}
-              onDelete={(adId) => {
-                if (confirm("Are you sure you want to delete this advert?")) {
-                  // Replace with actual API delete logic
-                  console.log("Deleting advert:", adId);
-                  // Optional: revalidate SWR or remove from local list
-                }
-              }}
+              onDelete={handleDelete}
             />
           ))}
         </div>
