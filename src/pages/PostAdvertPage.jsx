@@ -92,7 +92,7 @@ export default function PostAdvertPage() {
                     name="title"
                     required
                     className="input-field"
-                    placeholder="Enter a catchy title"
+                    placeholder="Enter a title"
                   />
                 </div>
 
