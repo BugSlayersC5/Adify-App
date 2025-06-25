@@ -25,9 +25,9 @@ const Navbar = () => {
   // Determine the correct dashboard link based on user role
   const getDashboardLink = () => {
     // If the user is a vendor, direct them to the vendor dashboard
-    if (user?.role === 'vendor') return '/vendor/dashboard';
+    if (user?.role === 'vendor') return '/vendor-dashboard';
     // For any other authenticated user (regular user), direct to the general dashboard
-    return '/dashboard';
+    return '/user-dashboard';
   };
 
   // Helper function to check if a link is currently active
@@ -41,7 +41,7 @@ const Navbar = () => {
           <div className="flex items-center">
             <Link to="/" className="flex items-center space-x-2">
               <ShoppingBag className="h-8 w-8 text-blue-600" />
-              <span className="text-xl font-bold gradient-text">AdMarket</span>
+              <span className="text-xl font-bold gradient-text">ADIFY</span>
             </Link>
           </div>
 
