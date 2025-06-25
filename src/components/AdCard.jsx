@@ -23,7 +23,7 @@ export default function AdCard({ ad, viewMode = 'grid' }) {
   return (
     <div className={cardClasses}>
       <Link to={`/ad/${ad.id}`}>
-        <img src={ad.images[0]} alt={ad.title} className={imageClasses} />
+        <img src={ad.images} alt={ad.title} className={imageClasses} />
       </Link>
       <div className={contentClasses}>
         <div>
