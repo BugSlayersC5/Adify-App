@@ -1,29 +1,29 @@
-import { Link } from 'react-router';
-import { MapPin, DollarSign, Eye, Heart } from 'lucide-react';
+import { Link } from "react-router";
+import { MapPin, DollarSign, Eye, Heart, Edit, Trash2 } from "lucide-react";
 
-export default function AdCard({ ad, viewMode = 'grid' }) {
+export default function AdCard({ ad, viewMode = "grid", onEdit, onDelete }) {
   if (!ad) {
     return null; // Or a placeholder if no ad data is provided
   }
 
   // Determine card styling based on viewMode
   const cardClasses =
-    viewMode === 'grid'
-      ? 'bg-white dark:bg-gray-800 rounded-lg shadow-md hover:shadow-lg transition-shadow overflow-hidden'
-      : 'flex flex-col sm:flex-row bg-white dark:bg-gray-800 rounded-lg shadow-md hover:shadow-lg transition-shadow overflow-hidden';
+    viewMode === "grid"
+      ? "bg-white dark:bg-gray-800 rounded-lg shadow-md hover:shadow-lg transition-shadow overflow-hidden"
+      : "flex flex-col sm:flex-row bg-white dark:bg-gray-800 rounded-lg shadow-md hover:shadow-lg transition-shadow overflow-hidden";
 
   const imageClasses =
-    viewMode === 'grid'
-      ? 'w-full h-48 object-cover'
-      : 'w-full sm:w-48 h-48 sm:h-auto object-cover sm:rounded-l-lg sm:rounded-t-none rounded-t-lg';
+    viewMode === "grid"
+      ? "w-full h-48 object-cover"
+      : "w-full sm:w-48 h-48 sm:h-auto object-cover sm:rounded-l-lg sm:rounded-t-none rounded-t-lg";
 
   const contentClasses =
-    viewMode === 'grid' ? 'p-4' : 'p-4 flex-1 flex flex-col justify-between';
+    viewMode === "grid" ? "p-4" : "p-4 flex-1 flex flex-col justify-between";
 
   return (
     <div className={cardClasses}>
       <Link to={`/ad/${ad.id}`}>
-        <img src={ad.images} alt={ad.title} className={imageClasses} />
+        <img src={ad.images[0]} alt={ad.title} className={imageClasses} />
       </Link>
       <div className={contentClasses}>
         <div>
@@ -62,6 +62,27 @@ export default function AdCard({ ad, viewMode = 'grid' }) {
           >
             <Heart className="h-5 w-5" />
           </button>
+        </div>
+
+        <div className="flex justify-end gap-2 mt-4 pt-3 border-t border-gray-200 dark:border-gray-700">
+          {onEdit && ( // Only render if onEdit prop is provided
+            <button
+              onClick={() => onEdit(ad.id)}
+              className="flex items-center px-3 py-1.5 bg-blue-500 text-white rounded-md hover:bg-blue-600 transition-colors duration-200 text-sm font-semibold"
+              aria-label={`Edit ${ad.title}`}
+            >
+              <Edit size={16} className="mr-1" /> Edit
+            </button>
+          )}
+          {onDelete && ( // Only render if onDelete prop is provided
+            <button
+              onClick={() => onDelete(ad.id)} // Use the prop passed down
+              className="flex items-center px-3 py-1.5 bg-red-500 text-white rounded-md hover:bg-red-600 transition-colors duration-200 text-sm font-semibold"
+              aria-label={`Delete ${ad.title}`}
+            >
+              <Trash2 size={16} className="mr-1" /> Delete
+            </button>
+          )}
         </div>
       </div>
     </div>

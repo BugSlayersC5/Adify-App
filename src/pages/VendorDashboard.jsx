@@ -1,11 +1,14 @@
 import { useState } from 'react';
-import { Link } from 'react-router';
+// Changed Link import from 'react-router' to 'react-router-dom'
+// as 'react-router' is generally for lower-level routing primitives
+// and 'Link' usually comes from 'react-router-dom' for web apps.
+import { Link } from 'react-router-dom';
 import {
   PlusCircle, Eye, DollarSign, TrendingUp,
   Edit, CheckCircle, Clock, XCircle
 } from 'lucide-react';
 import Footer from '../components/Footer';
-import Navbar from '../components/NavBar';
+import Navbar from '../components/NavBar'; // This component will NOT be changed
 import AdCard from '../components/AdCard';
 
 export default function VendorDashboard() {
@@ -150,7 +153,7 @@ export default function VendorDashboard() {
 
   return (
     <section className='dark:bg-[#192D64] bg-[#F3F8FD]'>
-      <Navbar />
+      <Navbar /> {/* This Navbar component remains unchanged and will still show "Post Ad" */}
       <div className="min-h-screen py-8">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           {/* Header */}
@@ -163,6 +166,8 @@ export default function VendorDashboard() {
                 Manage your advertisements and track performance
               </p>
             </div>
+            {/* THIS IS THE BUTTON REMOVED FROM THE TOP RIGHT OF THE DASHBOARD HEADER */}
+            {/*
             <Link
               to="/vendor/post"
               className="btn-primary flex items-center space-x-2 mt-4 sm:mt-0"
@@ -170,6 +175,7 @@ export default function VendorDashboard() {
               <PlusCircle className="h-4 w-4" />
               <span>Post New Ad</span>
             </Link>
+            */}
           </div>
 
           {/* Stats Grid */}
@@ -231,6 +237,8 @@ export default function VendorDashboard() {
                 Quick Actions
               </h2>
               <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
+                {/* THIS IS THE LINK REMOVED FROM THE "QUICK ACTIONS" SECTION */}
+                {/*
                 <Link
                   to="/post-advert"
                   className="flex items-center space-x-3 p-4 bg-blue-50 dark:bg-blue-900/20 rounded-lg hover:bg-blue-100 dark:hover:bg-blue-900/30 transition-colors"
@@ -240,6 +248,7 @@ export default function VendorDashboard() {
                     Post New Ad
                   </span>
                 </Link>
+                */}
 
                 <Link
                   to="/manage-adverts"
