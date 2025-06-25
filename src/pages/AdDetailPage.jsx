@@ -1,58 +1,19 @@
 import { useState, useEffect } from 'react';
 import { useParams, useNavigate } from 'react-router';
 import { ArrowLeft, MapPin, Calendar, Eye, Heart, Share2, Flag, User, Phone, Mail } from 'lucide-react';
-
-const mockAds = [
-  {
-    id: '1',
-    title: 'iPhone 14 Pro Max',
-    description: 'Brand new iPhone 14 Pro Max with warranty. Unlocked for all carriers.',
-    image: 'https://images.unsplash.com/photo-1678652197831-2d180705cd2c?q=80&w=1170&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D',
-    category: 'Electronics',
-    location: 'Accra, Ghana',
-    createdAt: '2024-12-15',
-    price: 1200,
-    vendorName: 'John Doe',
-    views: 78,
-    likes: 3,
-  },
-   {
-    id: '2',
-    title: 'Dell XPS 13',
-    description: 'Brand new iPhone 14 Pro Max with warranty. Unlocked for all carriers.',
-    image: 'https://images.unsplash.com/photo-1620570625542-194933f7639a?q=80&w=1170&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D',
-    category: 'Electronics',
-    location: 'Accra, Ghana',
-    createdAt: '2024-12-15',
-    price: 1200,
-    vendorName: 'John Doe',
-    views: 78,
-    likes: 3,
-  },
-];
+import useSWR from 'swr';
+import { apiFetcher } from '../../api/client';
 
 const AdDetailPage = () => {
   const { id } = useParams();
   const navigate = useNavigate();
-  const [ad, setAd] = useState(null);
-  const [loading, setLoading] = useState(true);
   const [isLiked, setIsLiked] = useState(false);
 
-  useEffect(() => {
-    if (id) {
-      const foundAd = mockAds.find((a) => a.id === id);
-      if (foundAd) {
-        setAd(foundAd);
-      } else {
-        navigate('/');
-      }
-      setLoading(false);
-    }
-  }, [id, navigate]);
+  const { data, isLoading, error } = useSWR(`/adverts/${id}`, apiFetcher);
 
   const handleLike = () => {
     if (!ad) return;
-    const newLikeCount = isLiked ? (ad.likes || 0) - 1 : (ad.likes || 0) + 1;
+    const newLikeCount = isLiked ? (data.likes || 0) - 1 : (data.likes || 0) + 1;
     setIsLiked(!isLiked);
     setAd({ ...ad, likes: newLikeCount });
   };
@@ -81,7 +42,7 @@ const AdDetailPage = () => {
     });
   };
 
-  if (loading) {
+  if (isLoading) {
     return (
       <div className="min-h-screen flex items-center justify-center">
         <div className="animate-spin rounded-full h-12 w-12 border-b-2 border-blue-500"></div>
@@ -89,7 +50,7 @@ const AdDetailPage = () => {
     );
   }
 
-  if (!ad) {
+  if (error) {
     return (
       <div className="min-h-screen flex items-center justify-center">
         <div className="text-center">
@@ -122,8 +83,8 @@ const AdDetailPage = () => {
           <div className="lg:col-span-2">
             <div className="card overflow-hidden mb-6">
               <img
-                src={ad.image}
-                alt={ad.title}
+                src={data.images[0]}
+                alt={data.title}
                 className="w-full h-96 object-cover"
               />
             </div>
@@ -132,15 +93,15 @@ const AdDetailPage = () => {
               <div className="p-6">
                 <div className="flex flex-col sm:flex-row justify-between items-start mb-4">
                   <h1 className="text-3xl font-bold text-gray-900 dark:text-white mb-2 sm:mb-0">
-                    {ad.title}
+                    {data.title}
                   </h1>
                   <div className="text-right">
                     <span className="text-3xl font-bold text-blue-600">
-                      {formatPrice(ad.price)}
+                      {formatPrice(data.price)}
                     </span>
                     <div className="flex items-center space-x-1 text-gray-500 dark:text-gray-400 mt-1">
                       <span className="bg-blue-100 text-blue-800 dark:bg-blue-900/20 dark:text-blue-400 px-2 py-1 rounded-full text-sm">
-                        {ad.category}
+                        {data.category}
                       </span>
                     </div>
                   </div>
@@ -149,30 +110,29 @@ const AdDetailPage = () => {
                 <div className="flex flex-wrap items-center gap-4 text-sm text-gray-600 dark:text-gray-400 mb-4">
                   <div className="flex items-center space-x-1">
                     <MapPin className="h-4 w-4" />
-                    <span>{ad.location}</span>
+                    <span>{data.location}</span>
                   </div>
                   <div className="flex items-center space-x-1">
                     <Calendar className="h-4 w-4" />
-                    <span>Posted on {formatDate(ad.createdAt)}</span>
+                    <span>Posted on {formatDate(data.createdAt)}</span>
                   </div>
                   <div className="flex items-center space-x-1">
                     <Eye className="h-4 w-4" />
-                    <span>{ad.views} views</span>
+                    <span>{data.views} views</span>
                   </div>
                   <div className="flex items-center space-x-1">
                     <Heart className="h-4 w-4" />
-                    <span>{ad.likes} likes</span>
+                    <span>{data.likes} likes</span>
                   </div>
                 </div>
 
                 <div className="flex flex-wrap gap-3">
                   <button
                     onClick={handleLike}
-                    className={`flex items-center space-x-2 px-4 py-2 rounded-lg transition-colors ${
-                      isLiked
-                        ? 'bg-red-100 text-red-600 dark:bg-red-900/20 dark:text-red-400'
-                        : 'bg-gray-100 text-gray-600 dark:bg-gray-700 dark:text-gray-400 hover:bg-gray-200 dark:hover:bg-gray-600'
-                    }`}
+                    className={`flex items-center space-x-2 px-4 py-2 rounded-lg transition-colors ${isLiked
+                      ? 'bg-red-100 text-red-600 dark:bg-red-900/20 dark:text-red-400'
+                      : 'bg-gray-100 text-gray-600 dark:bg-gray-700 dark:text-gray-400 hover:bg-gray-200 dark:hover:bg-gray-600'
+                      }`}
                   >
                     <Heart className={`h-4 w-4 ${isLiked ? 'fill-current' : ''}`} />
                     <span>{isLiked ? 'Liked' : 'Like'}</span>
@@ -203,7 +163,7 @@ const AdDetailPage = () => {
                   Description
                 </h2>
                 <p className="text-gray-700 dark:text-gray-300 leading-relaxed whitespace-pre-wrap">
-                  {ad.description}
+                  {data.description}
                 </p>
               </div>
             </div>
@@ -222,7 +182,7 @@ const AdDetailPage = () => {
                   </div>
                   <div>
                     <h4 className="font-medium text-gray-900 dark:text-white">
-                      {ad.vendorName}
+                      {data.vendorName}
                     </h4>
                     <p className="text-sm text-gray-600 dark:text-gray-400">
                       Member since 2023
