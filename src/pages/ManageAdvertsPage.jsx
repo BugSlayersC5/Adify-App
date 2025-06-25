@@ -247,6 +247,7 @@ export default function ManageAdvertsPage() {
               ))}
             </div>
           )}
+          
 
           <Modal
             isOpen={deleteModalOpen}
