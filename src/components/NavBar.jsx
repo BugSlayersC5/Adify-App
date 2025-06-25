@@ -70,8 +70,8 @@ const Navbar = () => {
                       to="/post-advert"
                       className={`flex items-center space-x-1 px-3 py-2 rounded-md text-sm font-medium transition-colors ${
                         isActive('/vendor/post')
-                          ? 'text-blue-600 bg-blue-50 dark:bg-blue-900/20'
-                          : 'text-gray-700 dark:text-gray-300 hover:text-blue-600 dark:hover:text-blue-400'
+                          ? 'text-blue-600  bg-blue-900/20'
+                          : ' text-gray-300  hover:text-blue-400'
                       }`}
                     >
                       <PlusCircle className="h-4 w-4" />
@@ -104,14 +104,14 @@ const Navbar = () => {
                   {/* User Dropdown Menu */}
                   {showUserMenu && (
                     <div className="absolute right-0 mt-2 w-48 bg-white dark:bg-gray-800 rounded-md shadow-lg py-1 border border-gray-200 dark:border-gray-700">
-                      <Link
+                      {/* <Link
                         to={getDashboardLink()}
                         className="flex items-center px-4 py-2 text-sm text-gray-700 dark:text-gray-300 hover:bg-gray-100 dark:hover:bg-gray-700"
                         onClick={() => setShowUserMenu(false)}
                       >
                         <LayoutDashboard className="h-4 w-4 mr-2" />
                         Dashboard
-                      </Link>
+                      </Link> */}
                       <button
                         onClick={handleLogout}
                         className="flex items-center w-full px-4 py-2 text-sm text-gray-700 dark:text-gray-300 hover:bg-gray-100 dark:hover:bg-gray-700 text-left" // Added text-left for consistency
@@ -142,22 +142,22 @@ const Navbar = () => {
             )}
 
             {/* Theme Toggle Button */}
-            <button
+            {/* <button
               onClick={toggleTheme}
               className="p-2 rounded-md text-gray-700 dark:text-gray-300 hover:bg-gray-100 dark:hover:bg-gray-700 transition-colors"
             >
               {isDark ? <Sun className="h-5 w-5" /> : <Moon className="h-5 w-5" />}
-            </button>
+            </button> */}
           </div>
 
           {/* Mobile Menu Button */}
           <div className="md:hidden flex items-center space-x-2">
-            <button
+            {/* <button
               onClick={toggleTheme}
               className="p-2 rounded-md text-gray-700 dark:text-gray-300"
             >
               {isDark ? <Sun className="h-5 w-5" /> : <Moon className="h-5 w-5" />}
-            </button>
+            </button> */}
             <button
               onClick={() => setIsOpen(!isOpen)}
               className="p-2 rounded-md text-gray-700 dark:text-gray-300"
