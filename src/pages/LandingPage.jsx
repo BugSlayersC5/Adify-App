@@ -85,10 +85,10 @@ export default function LandingPage() {
 
   if (isLoading) {
     return (
-      <section className="dark:bg-[#192D64] bg-[#F2F7FE] min-h-screen flex flex-col">
+      <section className="bg-[#192D64]  min-h-screen flex flex-col">
         <Navbar />
         <div className="flex-1 flex items-center justify-center">
-          <p className="text-gray-600 dark:text-gray-400">Loading advertisements...</p>
+          <p className="text-gray-600">Loading advertisements...</p>
         </div>
         <Footer />
       </section>
@@ -97,7 +97,7 @@ export default function LandingPage() {
 
   if (error) {
     return (
-      <section className="dark:bg-[#192D64] bg-[#F2F7FE] min-h-screen flex flex-col">
+      <section className="bg-[#192D64] min-h-screen flex flex-col">
         <Navbar />
         <div className="flex-1 flex items-center justify-center">
           <p className="text-red-500">Failed to load advertisements. Please try again later.</p>
@@ -109,7 +109,7 @@ export default function LandingPage() {
 
   
   return (
-    <section className="dark:bg-[#192D64] bg-[#F2F7FE]">
+    <section className="bg-[#192D64] ">
       <Navbar />
       <div className="min-h-screen ">
         {/* Hero Section */}
@@ -138,7 +138,7 @@ export default function LandingPage() {
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8  ">
           <div className="flex flex-col lg:flex-row gap-8">
             {/* Filters Sidebar */}
-            <div className="lg:w-72 flex-shrink-0">
+            <div className=" fixed lg:sticky flex-shrink-0">
               <div className="lg:hidden mb-4">
                 <button
                   onClick={() => setShowFilters(true)}
@@ -162,12 +162,12 @@ export default function LandingPage() {
               {/* Results Header */}
               <div className="flex flex-col sm:flex-row justify-between items-start sm:items-center mb-6 gap-4">
                 <div>
-                  <h2 className="text-2xl font-bold text-gray-900 dark:text-white">
+                  <h2 className="text-2xl font-bold text-white">
                     {searchQuery
                       ? `Search Results for "${searchQuery}"`
                       : "All Ads"}
                   </h2>
-                  <p className="text-gray-600 dark:text-gray-400">
+                  <p className="text-gray-400">
                     {filteredAds.length} ads found
                   </p>
                 </div>
@@ -177,8 +177,8 @@ export default function LandingPage() {
                     onClick={() => setViewMode("grid")}
                     className={`p-2 rounded-md transition-colors ${
                       viewMode === "grid"
-                        ? "bg-blue-100 text-blue-600 dark:bg-blue-900/20 dark:text-blue-400"
-                        : "text-gray-400 hover:text-gray-600 dark:hover:text-gray-300"
+                        ? "bg-blue-900/20 text-blue-400"
+                        : "text-gray-400 hover:text-gray-600"
                     }`}
                   >
                     <Grid className="h-5 w-5" />
@@ -187,8 +187,8 @@ export default function LandingPage() {
                     onClick={() => setViewMode("list")}
                     className={`p-2 rounded-md transition-colors ${
                       viewMode === "list"
-                        ?'bg-blue-100 text-blue-600 dark:bg-blue-900/20 dark:text-blue-400'
-                      : 'text-gray-400 hover:text-gray-600 dark:hover:text-gray-300'
+                        ?'bg-blue-900/20 text-blue-400'
+                      : 'text-gray-400 hover:text-gray-300'
                     }`}
                   >
                     <List className="h-5 w-5" />
@@ -198,7 +198,7 @@ export default function LandingPage() {
 
               {/* Ads Display */}
               {filteredAds.length === 0 ? (
-                <div className="text-center text-gray-500 dark:text-gray-400">No ads found matching your criteria.</div>
+                <div className="text-center text-gray-400">No ads found matching your criteria.</div>
               ) : viewMode === "grid" ? (
                 <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
                   {filteredAds.map((ad) => (
