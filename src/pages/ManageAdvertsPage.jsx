@@ -2,7 +2,7 @@
 import { Link, useNavigate, useParams } from "react-router";
 import { Edit, Trash2, Eye, Plus, Search, Filter } from "lucide-react";
 import Modal from "../components/Modal";
-import Navbar from "../components/Navbar";
+import Navbar from "../components/NavBar";
 import Footer from "../components/Footer";
 import useSWR, { mutate } from "swr";
 import { apiClient, apiFetcher } from "../../api/client";
@@ -53,16 +53,16 @@ export default function ManageAdvertsPage() {
 
 
   return (
-    <section className="dark:bg-[#192D64] bg-[#F2F7FE]">
+    <section className="bg-[#192D64]">
       <Navbar />
       <div className="min-h-screen py-8">
         <div className="max-w-7xl mx-auto px-4">
           <div className="flex justify-between items-center mb-6">
             <div>
-              <h1 className="text-3xl font-bold text-gray-900 dark:text-white mb-2">
+              <h1 className="text-3xl font-boltext-white mb-2">
                 Manage Advertisements
               </h1>
-              <p className="text-gray-600 dark:text-gray-400">
+              <p className="text-gray-400">
                 View and manage all your posted advertisements
               </p>
             </div>
