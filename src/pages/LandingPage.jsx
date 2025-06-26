@@ -162,12 +162,12 @@ export default function LandingPage() {
               {/* Results Header */}
               <div className="flex flex-col sm:flex-row justify-between items-start sm:items-center mb-6 gap-4">
                 <div>
-                  <h2 className="text-2xl font-bold text-gray-900 dark:text-white">
+                  <h2 className="text-2xl font-bold text-white">
                     {searchQuery
                       ? `Search Results for "${searchQuery}"`
                       : "All Ads"}
                   </h2>
-                  <p className="text-gray-600 dark:text-gray-400">
+                  <p className="text-gray-400">
                     {filteredAds.length} ads found
                   </p>
                 </div>
@@ -198,7 +198,7 @@ export default function LandingPage() {
 
               {/* Ads Display */}
               {filteredAds.length === 0 ? (
-                <div className="text-center dark:text-gray-400">No ads found matching your criteria.</div>
+                <div className="text-center text-gray-400">No ads found matching your criteria.</div>
               ) : viewMode === "grid" ? (
                 <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
                   {filteredAds.map((ad) => (
