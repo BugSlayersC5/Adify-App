@@ -3,6 +3,8 @@ import { useParams, useNavigate } from 'react-router';
 import { ArrowLeft, MapPin, Calendar, Eye, Heart, Share2, Flag, User, Phone, Mail } from 'lucide-react';
 import useSWR from 'swr';
 import { apiFetcher } from '../../api/client';
+import Footer from '../components/Footer';
+import Navbar from '../components/NavBar';
 
 const AdDetailPage = () => {
   const { id } = useParams();
@@ -30,7 +32,7 @@ const AdDetailPage = () => {
   const formatPrice = (price) => {
     return new Intl.NumberFormat('en-US', {
       style: 'currency',
-      currency: 'USD',
+      currency: 'GHS',
     }).format(price);
   };
 
@@ -69,7 +71,10 @@ const AdDetailPage = () => {
   }
 
   return (
-    <div className="min-h-screen py-8">
+    
+    <section className='bg-[#192D64] text-white'>
+      <Navbar />
+      <div className="min-h-screen py-8">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <button
           onClick={() => navigate(-1)}
@@ -233,6 +238,8 @@ const AdDetailPage = () => {
         </div>
       </div>
     </div>
+    <Footer />
+      </section>
   );
 };
 
