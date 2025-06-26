@@ -68,7 +68,7 @@ export default function FilterSidebar({
 
       {/* Sidebar */}
       <div
-        className={`fixed lg:sticky top-0 left-0 h-full lg:h-auto bg-white dark:bg-gray-800 border-r border-gray-200 dark:border-gray-700 w-80 lg:w-72 transform transition-transform duration-300 ease-in-out z-50 ${
+        className={`fixed lg:sticky top-0 left-0 h-full lg:h-auto bg-gray-800 border-r border-gray-700 w-80 lg:w-72 transform transition-transform duration-300 ease-in-out z-50 ${
           isOpen ? "translate-x-0" : "-translate-x-full lg:translate-x-0"
         }`}
       >
@@ -77,14 +77,14 @@ export default function FilterSidebar({
           <div className="flex items-center justify-between mb-6">
             <div className="flex items-center space-x-2">
               <Filter className="h-5 w-5 text-blue-600" />
-              <h2 className="text-lg font-semibold text-gray-900 dark:text-white">
+              <h2 className="text-lg font-semibold text-white">
                 Filters
               </h2>
             </div>
             <div className="flex items-center space-x-2">
               <button
                 onClick={clearFilters}
-                className="text-sm text-blue-600 hover:text-blue-700 dark:text-blue-400"
+                className="text-sm  hover:text-blue-700 text-blue-400"
               >
                 Clear All
               </button>
@@ -100,8 +100,8 @@ export default function FilterSidebar({
           {/* Category Filter */}
           <div className="mb-6">
             <div className="flex items-center space-x-2 mb-3">
-              <Tag className="h-4 w-4 text-gray-600 dark:text-gray-400" />
-              <label className="text-sm font-medium text-gray-700 dark:text-gray-300">
+              <Tag className="h-4 w-4 text-gray-400" />
+              <label className="text-sm font-medium text-gray-300">
                 Category
               </label>
             </div>
@@ -121,9 +121,8 @@ export default function FilterSidebar({
           {/* Price Range Filter */}
           <div className="mb-6">
             <div className="flex items-center space-x-2 mb-3">
-              <DollarSign className="h-4 w-4 text-gray-600 dark:text-gray-400" />
-              <label className="text-sm font-medium text-gray-700 dark:text-gray-300">
-                Price Range
+              <label className="text-sm font-medium text-gray-300">
+                  ₵ Price Range
               </label>
             </div>
             <div className="flex items-center space-x-2">
@@ -143,16 +142,16 @@ export default function FilterSidebar({
                 className="input-field text-sm"
               />
             </div>
-            <div className="mt-2 text-xs text-gray-500 dark:text-gray-400">
-              ${localFilters.priceRange[0]} - ${localFilters.priceRange[1]}
+            <div className="mt-2 text-xs text-gray-400">
+              ₵{localFilters.priceRange[0]} - ₵{localFilters.priceRange[1]}
             </div>
           </div>
 
           {/* Location Filter */}
           <div className="mb-6">
             <div className="flex items-center space-x-2 mb-3">
-              <MapPin className="h-4 w-4 text-gray-600 dark:text-gray-400" />
-              <label className="text-sm font-medium text-gray-700 dark:text-gray-300">
+              <MapPin className="h-4 w-4 text-gray-400" />
+              <label className="text-sm font-medium text-gray-300">
                 Location
               </label>
             </div>
@@ -167,7 +166,7 @@ export default function FilterSidebar({
 
           {/* Sort By */}
           <div className="mb-6">
-            <label className="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-3">
+            <label className="block text-sm font-medium text-gray-300 mb-3">
               Sort By
             </label>
             <select
@@ -185,15 +184,15 @@ export default function FilterSidebar({
 
           {/* Quick Price Filters */}
           <div className="mb-6">
-            <label className="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-3">
+            <label className="block text-sm font-medium text-gray-300 mb-3">
               Quick Price Filters
             </label>
             <div className="grid grid-cols-2 gap-2">
               {[
-                { label: "Under $50", range: [0, 50] },
-                { label: "$50-$200", range: [50, 200] },
-                { label: "$200-$500", range: [200, 500] },
-                { label: "$500+", range: [500, 10000] },
+                { label: "Under ₵50", range: [0, 50] },
+                { label: "₵50-₵200", range: [50, 200] },
+                { label: "₵200-₵500", range: [200, 500] },
+                { label: "₵500+", range: [500, 10000] },
               ].map((option) => (
                 <button
                   key={option.label}
@@ -201,8 +200,8 @@ export default function FilterSidebar({
                   className={`px-3 py-2 text-xs rounded-md border transition-colors ${
                     localFilters.priceRange[0] === option.range[0] &&
                     localFilters.priceRange[1] === option.range[1]
-                      ? "bg-blue-100 border-blue-300 text-blue-700 dark:bg-blue-900/20 dark:border-blue-600 dark:text-blue-400"
-                      : "bg-gray-50 border-gray-300 text-gray-700 hover:bg-gray-100 dark:bg-gray-700 dark:border-gray-600 dark:text-gray-300 dark:hover:bg-gray-600"
+                      ? " bg-blue-900/20 border-blue-600 text-blue-400"
+                      : " bg-gray-700 border-gray-600 text-gray-300 hover:bg-gray-600"
                   }`}
                 >
                   {option.label}

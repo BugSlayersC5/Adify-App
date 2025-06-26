@@ -9,8 +9,8 @@ export default function AdCard({ ad, viewMode = "grid", onEdit, onDelete }) {
   // Determine card styling based on viewMode
   const cardClasses =
     viewMode === "grid"
-      ? "bg-white dark:bg-gray-800 rounded-lg shadow-md hover:shadow-lg transition-shadow overflow-hidden"
-      : "flex flex-col sm:flex-row bg-white dark:bg-gray-800 rounded-lg shadow-md hover:shadow-lg transition-shadow overflow-hidden";
+      ? " bg-gray-800 rounded-lg shadow-md hover:shadow-lg transition-shadow overflow-hidden"
+      : "flex flex-col sm:flex-row bg-white bg-gray-800 rounded-lg shadow-md hover:shadow-lg transition-shadow overflow-hidden";
 
   const imageClasses =
     viewMode === "grid"
@@ -28,32 +28,32 @@ export default function AdCard({ ad, viewMode = "grid", onEdit, onDelete }) {
       <div className={contentClasses}>
         <div>
           <Link to={`/ad/${ad.id}`}>
-            <h3 className="text-lg font-semibold text-gray-900 dark:text-white hover:text-blue-600 dark:hover:text-blue-400 transition-colors mb-2">
+            <h3 className="text-lg font-semibold text-white  hover:text-blue-400 transition-colors mb-2">
               {ad.title}
             </h3>
           </Link>
-          <p className="text-gray-600 dark:text-gray-400 text-sm mb-3 line-clamp-2">
+          <p className="text-gray-400 text-sm mb-3 line-clamp-2">
             {ad.description}
           </p>
         </div>
 
-        <div className="flex items-center justify-between text-gray-700 dark:text-gray-300 mb-3">
-          <span className="flex items-center text-blue-600 dark:text-blue-400 font-bold text-xl">
-            <DollarSign className="h-5 w-5 mr-1" />
-            {ad.price.toLocaleString()}
+
+        <div className="flex items-center justify-between text-gray-300 mb-3">
+          <span className="flex items-center text-blue-400 font-bold text-xl">
+            ₵ {ad.price.toLocaleString()}
           </span>
-          <span className="flex items-center text-sm text-gray-500 dark:text-gray-400">
+          <span className="flex items-center text-sm text-gray-400">
             <Eye className="h-4 w-4 mr-1" /> {ad.views || 0}
           </span>
         </div>
 
-        <div className="flex items-center text-sm text-gray-500 dark:text-gray-400 mb-3">
+        <div className="flex items-center text-sm text-gray-400 mb-3">
           <MapPin className="h-4 w-4 mr-1" />
           <span>{ad.location}</span>
         </div>
 
         <div className="flex items-center justify-between mt-auto">
-          <span className="text-xs text-gray-500 dark:text-gray-400">
+          <span className="text-xs text-gray-400">
             Posted: {new Date(ad.createdAt).toLocaleDateString()}
           </span>
           <button
@@ -64,7 +64,7 @@ export default function AdCard({ ad, viewMode = "grid", onEdit, onDelete }) {
           </button>
         </div>
 
-        <div className="flex justify-end gap-2 mt-4 pt-3 border-t border-gray-200 dark:border-gray-700">
+        <div className="flex justify-end gap-2 mt-4 pt-3 border-t border-gray-700">
           {onEdit && ( // Only render if onEdit prop is provided
             <button
               onClick={() => onEdit(ad.id)}

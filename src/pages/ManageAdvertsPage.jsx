@@ -59,7 +59,7 @@ export default function ManageAdvertsPage() {
         <div className="max-w-7xl mx-auto px-4">
           <div className="flex justify-between items-center mb-6">
             <div>
-              <h1 className="text-3xl font-boltext-white mb-2">
+              <h1 className="text-3xl font-bold text-white mb-2">
                 Manage Advertisements
               </h1>
               <p className="text-gray-400">

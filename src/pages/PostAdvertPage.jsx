@@ -98,7 +98,7 @@ export default function PostAdvertPage() {
 
                 <div>
                   <label className="block text-sm font-medium text-gray-300 mb-2">
-                    <DollarSign className="inline h-4 w-4 mr-1" /> Price *
+                    <span className="inline h-4 w-4 mr-1">₵ </span> Price *
                   </label>
                   <input
                     type="number"
