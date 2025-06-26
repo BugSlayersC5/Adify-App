@@ -6,6 +6,7 @@ import Navbar from '../components/NavBar'; // Ensure correct path for Navbar
 import Footer from '../components/Footer'; // Ensure correct path for Footer
 import { apiClient } from '../../api/client'; // Assuming this path is correct
 import { useAuth } from '../context/AuthContext'; // Import useAuth
+import ShoppingBagLoader from '../components/loader';
 
 export default function LoginPage() {
   const [email, setEmail] = useState('');
@@ -59,6 +60,10 @@ export default function LoginPage() {
     // Call the actual login function
     await loginUser({ email, password });
   };
+
+  if (loading) {
+  return <ShoppingBagLoader />;
+}
 
   return (
     <section className='dark:bg-[#192D64] bg-[#F3F8FD]'>

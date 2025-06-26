@@ -7,6 +7,7 @@ import Navbar from "../components/NavBar";
 import Footer from "../components/Footer";
 import SearchWithSuggestions from "../components/SearchWithSuggestions";
 import { apiClient } from '../../api/client';
+import ShoppingBagLoader from "../components/loader";
 
 const searchSuggestions = ["iPhone", "Samsung", "Toyota", "Dell", "Phones", "Laptops", "Vehicles"];
 
@@ -87,8 +88,8 @@ export default function LandingPage() {
     return (
       <section className="bg-[#192D64]  min-h-screen flex flex-col">
         <Navbar />
-        <div className="flex-1 flex items-center justify-center">
-          <p className="text-gray-600">Loading advertisements...</p>
+         <div className="flex justify-center items-center min-h-screen bg-white">
+          <ShoppingBagLoader />
         </div>
         <Footer />
       </section>
