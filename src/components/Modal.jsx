@@ -58,18 +58,18 @@ export default function Modal({ isOpen, onClose, title, children, size = 'md' })
         </span>
 
         <div
-          className={`relative inline-block transform overflow-hidden rounded-lg bg-white dark:bg-gray-800 text-left align-bottom shadow-xl transition-all sm:my-8 sm:w-full sm:align-middle ${
+          className={`relative inline-block transform overflow-hidden rounded-lg bg-gray-800 text-left align-bottom shadow-xl transition-all sm:my-8 sm:w-full sm:align-middle ${
             sizeClasses[size]
           }`}
         >
           {/* Header */}
-          <div className="flex items-center justify-between border-b border-gray-200 dark:border-gray-700 px-6 py-4">
-            <h3 className="text-lg font-medium text-gray-900 dark:text-white">
+          <div className="flex items-center justify-between border-b border-gray-700 px-6 py-4">
+            <h3 className="text-lg font-medium text-white">
               {title}
             </h3>
             <button
               onClick={onClose}
-              className="rounded-md p-2 text-gray-400 hover:text-gray-600 dark:hover:text-gray-300 transition-colors"
+              className="rounded-md p-2 text-gray-400 hover:text-gray-300 transition-colors"
             >
               <X className="h-5 w-5" />
             </button>

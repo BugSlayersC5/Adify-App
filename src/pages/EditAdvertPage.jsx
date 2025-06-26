@@ -49,7 +49,7 @@ export default function EditAdvertPage() {
     return (
       <div className="min-h-screen flex items-center justify-center">
         <div className="text-center">
-          <h2 className="text-2xl font-bold text-gray-900 dark:text-white mb-4">
+          <h2 className="text-2xl font-bold text-white mb-4">
             Ad not found
           </h2>
           <button onClick={() => navigate("/")} className="btn-primary">
@@ -101,7 +101,7 @@ export default function EditAdvertPage() {
           {/* Image Section (UI only) */}
           <div className="card">
             <div className="p-6 relative">
-              <label className="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-3">
+              <label className="block text-sm font-medium text-gray-300 mb-3">
                 <ImageIcon className="inline h-4 w-4 mr-1" />
                 Product Images
               </label>
@@ -119,10 +119,10 @@ export default function EditAdvertPage() {
               </div>
 
               <Upload className="h-12 w-12 text-gray-400 mx-auto mb-4" />
-              <p className="text-gray-600 dark:text-gray-400 mb-2">
+              <p className="text-gray-400 mb-2">
                 Click to upload new images or drag and drop
               </p>
-              <p className="text-sm text-gray-500 dark:text-gray-500">
+              <p className="text-sm text-gray-500">
                 PNG, JPG, GIF up to {MAX_IMAGE_SIZE_MB_PER_FILE}MB each. Total
                 max {MAX_TOTAL_IMAGE_SIZE_MB}MB for {MAX_IMAGES} pictures.
               </p>
@@ -141,7 +141,7 @@ export default function EditAdvertPage() {
           <div className="card">
             <div className="p-6 grid grid-cols-1 md:grid-cols-2 gap-6">
               <div className="md:col-span-2">
-                <label className="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-2">
+                <label className="block text-sm font-medium text-gray-300 mb-2">
                   <FileText className="inline h-4 w-4 mr-1" /> Title *
                 </label>
                 <input
@@ -155,7 +155,7 @@ export default function EditAdvertPage() {
               </div>
 
               <div>
-                <label className="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-2">
+                <label className="block text-sm font-medium text-gray-300 mb-2">
                   <DollarSign className="inline h-4 w-4 mr-1" /> Price *
                 </label>
                 <input
@@ -170,7 +170,7 @@ export default function EditAdvertPage() {
               </div>
 
               <div>
-                <label className="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-2">
+                <label className="block text-sm font-medium text-gray-300 mb-2">
                   <Tag className="inline h-4 w-4 mr-1" /> Category *
                 </label>
                 <select
@@ -189,7 +189,7 @@ export default function EditAdvertPage() {
               </div>
 
               <div className="md:col-span-2">
-                <label className="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-2">
+                <label className="block text-sm font-medium text-gray-300 mb-2">
                   <MapPin className="inline h-4 w-4 mr-1" /> Location
                 </label>
                 <input
@@ -205,7 +205,7 @@ export default function EditAdvertPage() {
           {/* Description */}
           <div className="card">
             <div className="p-6">
-              <label className="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-2">
+              <label className="block text-sm font-medium text-gray-300 mb-2">
                 Description *
               </label>
               <textarea

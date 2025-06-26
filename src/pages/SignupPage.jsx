@@ -60,7 +60,7 @@ export default function SignupPage() {
                   Or{' '}
                   <Link
                     to="/login"
-                    className="font-medium text-blue-600 hover:text-blue-500 dark:text-blue-400"
+                    className="font-medium text-blue-400 hover:text-blue-400"
                   >
                     sign in to your existing account
                   </Link>
@@ -280,7 +280,7 @@ export default function SignupPage() {
                 <div className="mt-6">
                   <Link
                     to="/login"
-                    className="w-full flex justify-center py-2 px-4 border border-gray-300 dark:border-gray-600 rounded-md shadow-sm text-sm font-medium text-black bg-white hover:bg-gray-50 transition-colors"
+                    className="w-full flex justify-center py-2 px-4 border border-gray-600 rounded-md shadow-sm text-sm font-medium text-black bg-white hover:bg-gray-50 transition-colors"
                   >
                     Sign In Instead
                   </Link>

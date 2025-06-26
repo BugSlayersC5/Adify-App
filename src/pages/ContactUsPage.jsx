@@ -90,10 +90,10 @@ export default function ContactUsPage() {
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         {/* Header */}
         <div className="text-center mb-16">
-          <h1 className="text-4xl font-bold text-gray-900 dark:text-black mb-4">
+          <h1 className="text-4xl font-bold text-black mb-4">
             Get in Touch
           </h1>
-          <p className="text-xl text-gray-600 dark:text-gray-400 max-w-2xl mx-auto">
+          <p className="text-xl text-gray-400 max-w-2xl mx-auto">
             Have questions or need help? We're here to assist you. Reach out to us through any of the channels below.
           </p>
         </div>
@@ -101,7 +101,7 @@ export default function ContactUsPage() {
         <div className="grid grid-cols-1 lg:grid-cols-3 gap-12">
           {/* Contact Information */}
           <div className="lg:col-span-1">
-            <h2 className="text-2xl font-bold text-gray-900 dark:text-white mb-6">
+            <h2 className="text-2xl font-bold text-white mb-6">
               Contact Information
             </h2>
 
@@ -110,17 +110,17 @@ export default function ContactUsPage() {
                 const IconComponent = info.icon;
                 return (
                   <div key={info.title} className="flex items-start space-x-4">
-                    <div className="bg-blue-100 dark:bg-blue-900/20 p-3 rounded-lg">
-                      <IconComponent className="h-6 w-6 text-blue-600 dark:text-blue-400" />
+                    <div className="bg-blue-900/20 p-3 rounded-lg">
+                      <IconComponent className="h-6 w-6 text-blue-400" />
                     </div>
                     <div>
-                      <h3 className="text-lg font-semibold text-gray-900 dark:text-black">
+                      <h3 className="text-lg font-semibold text-black">
                         {info.title}
                       </h3>
-                      <p className="text-gray-900 dark:text-black font-medium">
+                      <p className="text-black font-medium">
                         {info.content}
                       </p>
-                      <p className="text-gray-600 dark:text-gray-400 text-sm">
+                      <p className="text-gray-400 text-sm">
                         {info.description}
                       </p>
                     </div>
@@ -131,20 +131,20 @@ export default function ContactUsPage() {
 
             {/* Support Options */}
             <div className="mt-12">
-              <h3 className="text-lg font-semibold text-gray-900 dark:text-black mb-4">
+              <h3 className="text-lg font-semibold text-black mb-4">
                 What can we help you with?
               </h3>
               <div className="space-y-3">
                 {supportOptions.map((option) => {
                   const IconComponent = option.icon;
                   return (
-                    <div key={option.title} className="flex items-center space-x-3 p-3 bg-gray-50 dark:bg-gray-800 rounded-lg">
-                      <IconComponent className="h-5 w-5 text-gray-600 dark:text-gray-400" />
+                    <div key={option.title} className="flex items-center space-x-3 p-3 bg-gray-800 rounded-lg">
+                      <IconComponent className="h-5 w-5 text-gray-400" />
                       <div>
-                        <p className="font-medium text-gray-900 dark:text-white">
+                        <p className="font-medium  text-white">
                           {option.title}
                         </p>
-                        <p className="text-sm text-gray-600 dark:text-gray-400">
+                        <p className="text-sm text-gray-400">
                           {option.description}
                         </p>
                       </div>
@@ -159,14 +159,14 @@ export default function ContactUsPage() {
           <div className="lg:col-span-2">
             <div className="card">
               <div className="p-8">
-                <h2 className="text-2xl font-bold text-gray-900 dark:text-white mb-6">
+                <h2 className="text-2xl font-bold text-white mb-6">
                   Send us a Message
                 </h2>
 
                 <form onSubmit={handleSubmit} className="space-y-6">
                   <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
                     <div>
-                      <label htmlFor="name" className="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-2">
+                      <label htmlFor="name" className="block text-sm font-medium text-gray-300 mb-2">
                         Full Name *
                       </label>
                       <input
@@ -182,7 +182,7 @@ export default function ContactUsPage() {
                     </div>
 
                     <div>
-                      <label htmlFor="email" className="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-2">
+                      <label htmlFor="email" className="block text-sm font-medium text-gray-300 mb-2">
                         Email Address *
                       </label>
                       <input
@@ -199,7 +199,7 @@ export default function ContactUsPage() {
                   </div>
 
                   <div>
-                    <label htmlFor="subject" className="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-2">
+                    <label htmlFor="subject" className="block text-sm font-medium text-gray-300 mb-2">
                       Subject *
                     </label>
                     <select
@@ -221,7 +221,7 @@ export default function ContactUsPage() {
                   </div>
 
                   <div>
-                    <label htmlFor="message" className="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-2">
+                    <label htmlFor="message" className="block text-sm font-medium text-gray-300 mb-2">
                       Message *
                     </label>
                     <textarea
@@ -259,10 +259,10 @@ export default function ContactUsPage() {
         {/* FAQ Section */}
         <div className="mt-20">
           <div className="text-center mb-12">
-            <h2 className="text-3xl font-bold text-gray-900 dark:text-black mb-4">
+            <h2 className="text-3xl font-bold text-black mb-4">
               Frequently Asked Questions
             </h2>
-            <p className="text-gray-600 dark:text-gray-400">
+            <p className="text-gray-400">
               Quick answers to common questions
             </p>
           </div>
@@ -296,10 +296,10 @@ export default function ContactUsPage() {
             ].map((faq, index) => (
               <div key={index} className="card">
                 <div className="p-6">
-                  <h3 className="text-lg font-semibold text-gray-900 dark:text-white mb-3">
+                  <h3 className="text-lg font-semibold text-white mb-3">
                     {faq.question}
                   </h3>
-                  <p className="text-gray-600 dark:text-gray-400">
+                  <p className="text-gray-400">
                     {faq.answer}
                   </p>
                 </div>

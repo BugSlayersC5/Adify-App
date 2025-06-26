@@ -25,7 +25,7 @@ export default function SearchWithSuggestions({ value, onChange, placeholder, su
         placeholder={placeholder}
         onFocus={() => setShowSuggestions(true)}
         onBlur={() => setTimeout(() => setShowSuggestions(false), 100)}
-        className="w-full pl-10 pr-10 py-3 border border-gray-300 dark:border-gray-600 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent dark:bg-gray-700 dark:text-white transition-all duration-200"
+        className="w-full pl-10 pr-10 py-3 border border-gray-600 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent text-white transition-all duration-200"
       />
       {showSuggestions && filteredSuggestions.length > 0 && (
         <ul className="absolute w-full bg-white shadow-md z-10 mt-1 border border-gray-200 rounded-md max-h-60 overflow-y-auto">
@@ -36,7 +36,7 @@ export default function SearchWithSuggestions({ value, onChange, placeholder, su
                 onChange(suggestion);
                 setShowSuggestions(false);
               }}
-              className="px-4 py-2 cursor-pointer hover:bg-blue-100"
+              className="px-4 py-2 cursor-pointer bg-gray-700 text-shadow-teal-50 hover:bg-blue-100"
             >
               {suggestion}
             </li>

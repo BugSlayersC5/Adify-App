@@ -66,21 +66,21 @@ export default function LoginPage() {
 }
 
   return (
-    <section className='dark:bg-[#192D64] bg-[#F3F8FD]'>
+    <section className='bg-[#192D64] '>
 
       <Navbar /> {/* Ensure Navbar is correctly rendered here */}
       <div className="min-h-screen flex items-center justify-center py-12 px-4 sm:px-6 lg:px-8">
         <div className="max-w-md w-full">
           <div className="text-center mb-8">
             <LogIn className="mx-auto h-12 w-12 text-blue-600" />
-            <h2 className="mt-6 text-3xl font-bold text-black dark:text-[#F3F8FD]">
+            <h2 className="mt-6 text-3xl font-bold text-[#F3F8FD]">
               Sign in to your account
             </h2>
-            <p className="mt-2 text-sm text-gray-600 dark:text-gray-400">
+            <p className="mt-2 text-sm text-gray-400">
               Or{' '}
               <Link
                 to="/signup"
-                className="font-medium text-blue-600 hover:text-blue-500 dark:text-blue-400"
+                className="font-medium hover:text-gray-500 text-blue-400"
               >
                 create a new account
               </Link>
@@ -91,7 +91,7 @@ export default function LoginPage() {
             <div>
               <label
                 htmlFor="email"
-                className="block text-sm font-medium text-gray-700 dark:text-[#F3F8FD] mb-2"
+                className="block text-sm font-medium text-[#F3F8FD] mb-2"
               >
                 Email Address
               </label>
@@ -111,7 +111,7 @@ export default function LoginPage() {
             <div>
               <label
                 htmlFor="password"
-                className="block text-sm font-medium text-gray-700 dark:text-[#F3F8FD] mb-2"
+                className="block text-sm font-medium text-[#F3F8FD] mb-2"
               >
                 Password
               </label>
@@ -151,7 +151,7 @@ export default function LoginPage() {
                 />
                 <label
                   htmlFor="remember-me"
-                  className="ml-2 block text-sm text-gray-700 dark:text-gray-300"
+                  className="ml-2 block text-sm text-gray-300"
                 >
                   Remember me
                 </label>
@@ -160,7 +160,7 @@ export default function LoginPage() {
               <div className="text-sm">
                 <a
                   href="#"
-                  className="font-medium text-blue-600 hover:text-blue-500 dark:text-blue-400"
+                  className="font-medium  hover:text-gray-500 text-blue-400"
                 >
                   Forgot your password?
                 </a>
@@ -192,10 +192,10 @@ export default function LoginPage() {
           <div className="mt-6">
             <div className="relative">
               <div className="absolute inset-0 flex items-center">
-                <div className="w-full border-t border-gray-300 dark:border-gray-600" />
+                <div className="w-full border-t border-gray-600" />
               </div>
               <div className="relative flex justify-center text-sm">
-                <span className="px-2 bg-gray-50 dark:bg-gray-900 text-gray-500">
+                <span className="px-2 bg-gray-900 text-gray-500">
                   Don't have an account?
                 </span>
               </div>
@@ -204,7 +204,7 @@ export default function LoginPage() {
             <div className="mt-6">
               <Link
                 to="/signup"
-                className="w-full flex justify-center py-2 px-4 border border-gray-300 dark:border-gray-600 rounded-md shadow-sm text-sm font-medium text-gray-700 dark:text-gray-300 bg-white dark:bg-gray-800 hover:bg-gray-50 dark:hover:bg-gray-700 transition-colors"
+                className="w-full flex justify-center py-2 px-4 border border-gray-600 rounded-md shadow-sm text-sm font-medium text-gray-300 bg-gray-800 hover:bg-gray-700 transition-colors"
               >
                 Create New Account
               </Link>

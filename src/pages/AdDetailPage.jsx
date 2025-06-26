@@ -56,7 +56,7 @@ const AdDetailPage = () => {
     return (
       <div className="min-h-screen flex items-center justify-center">
         <div className="text-center">
-          <h2 className="text-2xl font-bold text-gray-900 dark:text-white mb-4">
+          <h2 className="text-2xl font-bold text-white mb-4">
             Ad not found
           </h2>
           <button
@@ -78,7 +78,7 @@ const AdDetailPage = () => {
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <button
           onClick={() => navigate(-1)}
-          className="flex items-center space-x-2 text-gray-600 dark:text-gray-400 hover:text-blue-600 dark:hover:text-blue-400 mb-6 transition-colors"
+          className="flex items-center space-x-2 text-gray-400 hover:text-blue-400 mb-6 transition-colors"
         >
           <ArrowLeft className="h-5 w-5" />
           <span>Back</span>
@@ -97,22 +97,22 @@ const AdDetailPage = () => {
             <div className="card mb-6">
               <div className="p-6">
                 <div className="flex flex-col sm:flex-row justify-between items-start mb-4">
-                  <h1 className="text-3xl font-bold text-gray-900 dark:text-white mb-2 sm:mb-0">
+                  <h1 className="text-3xl font-bold text-white mb-2 sm:mb-0">
                     {data.title}
                   </h1>
                   <div className="text-right">
                     <span className="text-3xl font-bold text-blue-600">
                       {formatPrice(data.price)}
                     </span>
-                    <div className="flex items-center space-x-1 text-gray-500 dark:text-gray-400 mt-1">
-                      <span className="bg-blue-100 text-blue-800 dark:bg-blue-900/20 dark:text-blue-400 px-2 py-1 rounded-full text-sm">
+                    <div className="flex items-center space-x-1 text-gray-400 mt-1">
+                      <span className="bg-blue-900/20 text-blue-400 px-2 py-1 rounded-full text-sm">
                         {data.category}
                       </span>
                     </div>
                   </div>
                 </div>
 
-                <div className="flex flex-wrap items-center gap-4 text-sm text-gray-600 dark:text-gray-400 mb-4">
+                <div className="flex flex-wrap items-center gap-4 text-sm text-gray-400 mb-4">
                   <div className="flex items-center space-x-1">
                     <MapPin className="h-4 w-4" />
                     <span>{data.location}</span>
@@ -135,8 +135,8 @@ const AdDetailPage = () => {
                   <button
                     onClick={handleLike}
                     className={`flex items-center space-x-2 px-4 py-2 rounded-lg transition-colors ${isLiked
-                      ? 'bg-red-100 text-red-600 dark:bg-red-900/20 dark:text-red-400'
-                      : 'bg-gray-100 text-gray-600 dark:bg-gray-700 dark:text-gray-400 hover:bg-gray-200 dark:hover:bg-gray-600'
+                      ? '  bg-red-900/20 text-red-400'
+                      : '  bg-gray-700 text-gray-400  hover:bg-gray-600'
                       }`}
                   >
                     <Heart className={`h-4 w-4 ${isLiked ? 'fill-current' : ''}`} />
@@ -145,7 +145,7 @@ const AdDetailPage = () => {
 
                   <button
                     onClick={handleShare}
-                    className="flex items-center space-x-2 px-4 py-2 bg-gray-100 text-gray-600 dark:bg-gray-700 dark:text-gray-400 hover:bg-gray-200 dark:hover:bg-gray-600 rounded-lg transition-colors"
+                    className="flex items-center space-x-2 px-4 py-2  bg-gray-700 text-gray-400 hover:bg-gray-600 rounded-lg transition-colors"
                   >
                     <Share2 className="h-4 w-4" />
                     <span>Share</span>
@@ -153,7 +153,7 @@ const AdDetailPage = () => {
 
                   <button
                     onClick={handleReport}
-                    className="flex items-center space-x-2 px-4 py-2 bg-gray-100 text-gray-600 dark:bg-gray-700 dark:text-gray-400 hover:bg-gray-200 dark:hover:bg-gray-600 rounded-lg transition-colors"
+                    className="flex items-center space-x-2 px-4 py-2 bg-gray-700 text-gray-400 hover:bg-gray-600 rounded-lg transition-colors"
                   >
                     <Flag className="h-4 w-4" />
                     <span>Report</span>
@@ -164,10 +164,10 @@ const AdDetailPage = () => {
 
             <div className="card">
               <div className="p-6">
-                <h2 className="text-xl font-semibold text-gray-900 dark:text-white mb-4">
+                <h2 className="text-xl font-semibold text-white mb-4">
                   Description
                 </h2>
-                <p className="text-gray-700 dark:text-gray-300 leading-relaxed whitespace-pre-wrap">
+                <p className="text-gray-300 leading-relaxed whitespace-pre-wrap">
                   {data.description}
                 </p>
               </div>
@@ -177,7 +177,7 @@ const AdDetailPage = () => {
           <div className="lg:col-span-1">
             <div className="card mb-6">
               <div className="p-6">
-                <h3 className="text-lg font-semibold text-gray-900 dark:text-white mb-4">
+                <h3 className="text-lg font-semibold text-white mb-4">
                   Seller Information
                 </h3>
 
@@ -186,10 +186,10 @@ const AdDetailPage = () => {
                     <User className="h-6 w-6 text-white" />
                   </div>
                   <div>
-                    <h4 className="font-medium text-gray-900 dark:text-white">
+                    <h4 className="font-medium text-white">
                       {data.vendorName}
                     </h4>
-                    <p className="text-sm text-gray-600 dark:text-gray-400">
+                    <p className="text-sm text-gray-400">
                       Member since 2023
                     </p>
                   </div>
@@ -207,14 +207,14 @@ const AdDetailPage = () => {
                   </button>
                 </div>
 
-                <div className="mt-4 pt-4 border-t border-gray-200 dark:border-gray-700">
+                <div className="mt-4 pt-4 border-t border-gray-700">
                   <div className="flex items-center justify-between text-sm">
-                    <span className="text-gray-600 dark:text-gray-400">Response Rate</span>
-                    <span className="text-green-600 dark:text-green-400 font-medium">95%</span>
+                    <span className="text-gray-400">Response Rate</span>
+                    <span className="text-green-400 font-medium">95%</span>
                   </div>
                   <div className="flex items-center justify-between text-sm mt-1">
-                    <span className="text-gray-600 dark:text-gray-400">Response Time</span>
-                    <span className="text-gray-900 dark:text-white font-medium">~2 hours</span>
+                    <span className="text-gray-400">Response Time</span>
+                    <span className="text-white font-medium">~2 hours</span>
                   </div>
                 </div>
               </div>
@@ -222,10 +222,10 @@ const AdDetailPage = () => {
 
             <div className="card">
               <div className="p-6">
-                <h3 className="text-lg font-semibold text-gray-900 dark:text-white mb-4">
+                <h3 className="text-lg font-semibold text-white mb-4">
                   Safety Tips
                 </h3>
-                <ul className="space-y-2 text-sm text-gray-600 dark:text-gray-400">
+                <ul className="space-y-2 text-sm text-gray-400">
                   <li>• Meet in a public place</li>
                   <li>• Don't share personal information</li>
                   <li>• Inspect the item before payment</li>

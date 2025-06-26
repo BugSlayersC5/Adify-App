@@ -123,7 +123,7 @@ export default function LandingPage() {
               <p className="text-xl md:text-2xl mb-8 text-blue-100 animate-fadeInUp">
                 Discover thousands of products from trusted vendors
               </p>
-                <div className="max-w-2xl mx-auto animate-fadeInUp">
+                <div className="max-w-2xl mx-auto animate-fadeInUp ">
               <SearchWithSuggestions
                 value={searchQuery}
                 onChange={setSearchQuery}
