@@ -1,7 +1,6 @@
-import Navbar from "../components/Navbar";
+import Navbar from "../components/NavBar";
 import Footer from "../components/Footer";
 import { useNavigate, useParams } from "react-router";
-import { useState } from "react";
 import SubmitButton from "../components/SubmitButton";
 import { apiClient, apiFetcher } from "../../api/client";
 import useSWR from "swr";
