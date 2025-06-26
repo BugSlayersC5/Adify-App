@@ -11,6 +11,7 @@ import AdCard from "../components/AdCard";
 export default function ManageAdvertsPage() {
   const { id } = useParams();
   const navigate = useNavigate();
+  
 
   const { data, isLoading, error } = useSWR(`adverts/my-adverts`, apiFetcher);
   console.log("mydata:", data);
