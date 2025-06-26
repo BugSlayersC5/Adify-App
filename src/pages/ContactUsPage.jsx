@@ -48,19 +48,19 @@ export default function ContactUsPage() {
     {
       icon: Mail,
       title: 'Email Us',
-      content: 'contact@admarket.com',
+      content: 'contact@adify.com',
       description: 'Send us an email anytime',
     },
     {
       icon: Phone,
       title: 'Call Us',
-      content: '+233 (555) 123-4567',
+      content: '+23 (32) 0686-1637',
       description: 'Mon-Fri from 8am to 5pm',
     },
     {
       icon: MapPin,
       title: 'Visit Us',
-      content: '123 Business St, City, State 12345',
+      content: '123 Business St, City, State 423',
       description: 'Come say hello at our office',
     },
   ];
