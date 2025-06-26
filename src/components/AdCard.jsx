@@ -68,7 +68,7 @@ export default function AdCard({ ad, viewMode = "grid", onEdit, onDelete }) {
           {onEdit && ( // Only render if onEdit prop is provided
             <button
               onClick={() => onEdit(ad.id)}
-              className="flex items-center px-3 py-1.5 bg-blue-500 text-white rounded-md hover:bg-blue-600 transition-colors duration-200 text-sm font-semibold"
+              className="flex items-center px-3 py-1.5 bg-[#192D64] text-white rounded-md hover:bg-blue-600 transition-colors duration-200 text-sm font-semibold"
               aria-label={`Edit ${ad.title}`}
             >
               <Edit size={16} className="mr-1" /> Edit
@@ -77,7 +77,7 @@ export default function AdCard({ ad, viewMode = "grid", onEdit, onDelete }) {
           {onDelete && ( // Only render if onDelete prop is provided
             <button
               onClick={() => onDelete(ad.id)} // Use the prop passed down
-              className="flex items-center px-3 py-1.5 bg-red-500 text-white rounded-md hover:bg-red-600 transition-colors duration-200 text-sm font-semibold"
+              className="flex items-center px-3 py-1.5 bg-red-600 text-white rounded-md hover:bg-red-800 transition-colors duration-200 text-sm font-semibold"
               aria-label={`Delete ${ad.title}`}
             >
               <Trash2 size={16} className="mr-1" /> Delete

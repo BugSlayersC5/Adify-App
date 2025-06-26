@@ -84,13 +84,13 @@ export default function ContactUsPage() {
   ];
 
   return (
-   <section className=''>
+   <section className='bg-[#192D64]'>
      <Navbar/>
     <div className="min-h-screen py-12">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         {/* Header */}
         <div className="text-center mb-16">
-          <h1 className="text-4xl font-bold text-black mb-4">
+          <h1 className="text-4xl font-bold text-white mb-4">
             Get in Touch
           </h1>
           <p className="text-xl text-gray-400 max-w-2xl mx-auto">
@@ -114,10 +114,10 @@ export default function ContactUsPage() {
                       <IconComponent className="h-6 w-6 text-blue-400" />
                     </div>
                     <div>
-                      <h3 className="text-lg font-semibold text-black">
+                      <h3 className="text-lg font-semibold text-white">
                         {info.title}
                       </h3>
-                      <p className="text-black font-medium">
+                      <p className="text-white font-medium">
                         {info.content}
                       </p>
                       <p className="text-gray-400 text-sm">
@@ -131,7 +131,7 @@ export default function ContactUsPage() {
 
             {/* Support Options */}
             <div className="mt-12">
-              <h3 className="text-lg font-semibold text-black mb-4">
+              <h3 className="text-lg font-semibold text-white mb-4">
                 What can we help you with?
               </h3>
               <div className="space-y-3">
@@ -259,7 +259,7 @@ export default function ContactUsPage() {
         {/* FAQ Section */}
         <div className="mt-20">
           <div className="text-center mb-12">
-            <h2 className="text-3xl font-bold text-black mb-4">
+            <h2 className="text-3xl font-bold text-white mb-4">
               Frequently Asked Questions
             </h2>
             <p className="text-gray-400">
