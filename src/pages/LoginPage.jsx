@@ -61,9 +61,9 @@ export default function LoginPage() {
     await loginUser({ email, password });
   };
 
-  if (loading) {
-  return <ShoppingBagLoader />;
-}
+//   if (loading) {
+//   return <ShoppingBagLoader />;
+// }
 
   return (
     <section className='bg-[#192D64] '>
