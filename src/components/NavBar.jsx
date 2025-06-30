@@ -1,9 +1,20 @@
 // Navbar Component (No changes needed here, it relies on AuthContext)
-import React, { useState } from 'react';
-import { Link, useNavigate, useLocation } from 'react-router-dom';
-import { Menu, X, ShoppingBag, User, LogOut, Sun, Moon, PlusCircle, LayoutDashboard } from 'lucide-react';
-import { useAuth } from '../context/AuthContext'; // Assuming this path is correct
-import { useTheme } from '../context/ThemeContext'; // Assuming this path is correct
+import React, { useState } from "react";
+import { Link, useNavigate, useLocation } from "react-router-dom";
+import {
+  Menu,
+  X,
+  ShoppingBag,
+  User,
+  LogOut,
+  Sun,
+  Moon,
+  PlusCircle,
+  LayoutDashboard,
+} from "lucide-react";
+import { useAuth } from "../context/AuthContext"; // Assuming this path is correct
+import { useTheme } from "../context/ThemeContext"; // Assuming this path is correct
+import { toast } from "react-toastify";
 
 const Navbar = () => {
   const [isOpen, setIsOpen] = useState(false);
@@ -16,7 +27,11 @@ const Navbar = () => {
   // Handle user logout
   const handleLogout = () => {
     logout();
-    navigate('/');
+    navigate("/");
+    toast.success("Logout successful! 🎉", {
+      position: "bottom-right",
+    });
+
     setIsOpen(false); // Close mobile menu on logout
     setShowUserMenu(false); // Close user dropdown on logout
     localStorage.removeItem("ACCESS_TOKEN");
@@ -25,14 +40,13 @@ const Navbar = () => {
   // Determine the correct dashboard link based on user role
   const getDashboardLink = () => {
     // If the user is a vendor, direct them to the vendor dashboard
-    if (user?.role === 'vendor') return '/vendor-dashboard';
+    if (user?.role === "vendor") return "/vendor-dashboard";
     // For any other authenticated user (regular user), direct to the general dashboard
-    return '/user-dashboard';
+    return "/user-dashboard";
   };
 
   // Helper function to check if a link is currently active
   const isActive = (path) => location.pathname === path;
-  
 
   return (
     <nav className="bg-gray-900/90 backdrop-blur-md border-b border-gray-700 sticky top-0 z-40">
@@ -64,14 +78,14 @@ const Navbar = () => {
             {user ? (
               <>
                 {/* Vendor Specific Links */}
-                {user.role === 'vendor' && (
+                {user.role === "vendor" && (
                   <>
                     <Link
                       to="/post-advert"
                       className={`flex items-center space-x-1 px-3 py-2 rounded-md text-sm font-medium transition-colors ${
-                        isActive('/vendor/post')
-                          ? 'text-blue-600  bg-blue-900/20'
-                          : ' text-gray-300  hover:text-blue-400'
+                        isActive("/vendor/post")
+                          ? "text-blue-600  bg-blue-900/20"
+                          : " text-gray-300  hover:text-blue-400"
                       }`}
                     >
                       <PlusCircle className="h-4 w-4" />
@@ -80,9 +94,9 @@ const Navbar = () => {
                     <Link
                       to="/manage-adverts"
                       className={`px-3 py-2 rounded-md text-sm font-medium transition-colors ${
-                        isActive('/manage-adverts')
-                          ? 'text-blue-600 bg-blue-900/20'
-                          : 'text-gray-300 hover:text-blue-400'
+                        isActive("/manage-adverts")
+                          ? "text-blue-600 bg-blue-900/20"
+                          : "text-gray-300 hover:text-blue-400"
                       }`}
                     >
                       Manage Ads
@@ -162,7 +176,11 @@ const Navbar = () => {
               onClick={() => setIsOpen(!isOpen)}
               className="p-2 rounded-md text-gray-300"
             >
-              {isOpen ? <X className="h-6 w-6" /> : <Menu className="h-6 w-6" />}
+              {isOpen ? (
+                <X className="h-6 w-6" />
+              ) : (
+                <Menu className="h-6 w-6" />
+              )}
             </button>
           </div>
         </div>
@@ -196,7 +214,7 @@ const Navbar = () => {
                 </Link>
 
                 {/* Vendor Specific Mobile Links */}
-                {user.role === 'vendor' && (
+                {user.role === "vendor" && (
                   <>
                     <Link
                       to="/post-advert"

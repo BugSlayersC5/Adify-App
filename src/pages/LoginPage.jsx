@@ -7,6 +7,7 @@ import Footer from '../components/Footer'; // Ensure correct path for Footer
 import { apiClient } from '../../api/client'; // Assuming this path is correct
 import { useAuth } from '../context/AuthContext'; // Import useAuth
 import ShoppingBagLoader from '../components/loader';
+import { toast } from 'react-toastify';
 
 export default function LoginPage() {
   const [email, setEmail] = useState('');
@@ -38,12 +39,16 @@ export default function LoginPage() {
       // IMPORTANT: Call the login function from AuthContext with the user data
       authLogin(user); // Pass the user object from the backend response
 
+      toast.success("Login successful! 🎉", { position: "bottom-right" });
+
       // Navigate to the 'from' path or default to home after successful login
       navigate(from, { replace: true });
 
     } catch (err) {
       console.error('Login error:', err.response?.data || err.message);
-      setError(err.response?.data?.message || 'Login failed. Please check your credentials.');
+      const message = err.response?.data?.message || 'Login failed. Please check your credentials.';
+      setError(message);
+      toast.error(message,{position: "bottom-right"})
     } finally {
       setLoading(false);
     }

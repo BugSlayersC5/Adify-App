@@ -1,5 +1,6 @@
 // App.jsx
 import { createBrowserRouter, RouterProvider } from "react-router";
+import "react-toastify/dist/ReactToastify.css";
 
 // Pages
 import LandingPage from "./pages/LandingPage";
@@ -14,6 +15,7 @@ import ContactUsPage from "./pages/ContactUsPage";
 import TermsAndConditionsPage from "./pages/TermsAndConditionsPage";
 import { AuthProvider } from "./context/AuthContext";
 import { ThemeProvider } from "./context/ThemeContext";
+import { ToastContainer } from "react-toastify";
 
 const adifyRouter = createBrowserRouter([
   { path: "/", element: <LandingPage /> },
@@ -33,6 +35,17 @@ export default function App() {
     <ThemeProvider>
     <AuthProvider> 
     <RouterProvider router={adifyRouter} />
+      <ToastContainer
+          position="top-right"
+          autoClose={3000}
+          hideProgressBar={false}
+          newestOnTop={false}
+          closeOnClick
+          pauseOnFocusLoss
+          draggable
+          pauseOnHover
+          theme="colored"
+        />
     </AuthProvider>
     </ThemeProvider>
   );
